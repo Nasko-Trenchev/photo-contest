@@ -1,4 +1,13 @@
+import { useState } from "react"
+
 export default function Details(){
+
+  const [like, setLike] = useState(false);
+  const [likeCount, setLikeCount] = useState(0)
+
+  const increaseLike = () => {
+    setLikeCount(oldValue => oldValue + 1)
+  }
 
     return (
         <div className="details-page">
@@ -8,9 +17,15 @@ export default function Details(){
   <div className="details-container">
     <h1 className="name">Product Name</h1>
     <div className="like-section">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"/>
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"/>
-      <span className="like-count">100 Likes</span>
+
+      {!like ?
+      <>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"
+        onClick={()=> setLike(true)}/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
+        onClick={increaseLike}/>
+        </> : <p>Thank you for your vote!</p>}
+      {!like &&  <span className="like-count">{likeCount}</span>}
     </div>
     <div className="comment-section">
       <h2 className="comment-heading">Comments</h2>
