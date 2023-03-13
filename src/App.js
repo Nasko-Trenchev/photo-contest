@@ -10,26 +10,26 @@ function App() {
       <NavigationHeader />
       <main>
         <h1>Welcome to the Photo Contest!</h1>
-        <p>Submit your best photos and win amazing prizes.</p>
+        <p>Compete in one of the three categories.</p>
         <div class="fullwrap">
-          <img src="https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559__480.jpg" />
+          <img src="https://images.pexels.com/photos/2922672/pexels-photo-2922672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
           <div class="fullcap">
-            This will cover the entire image!<br />
-            <button>Click!</button>
+            Animals<br /><br /><br />
+            <button>View category</button>
           </div>
         </div>
         <div class="fullwrap">
-          <img src="https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559__480.jpg" />
+          <img src="https://images.pexels.com/photos/3244513/pexels-photo-3244513.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
           <div class="fullcap">
-            This will cover the entire image!<br />
-            <button>Click!</button>
+            Nature<br /><br /><br />
+            <button>View category</button>
           </div>
         </div>
         <div class="fullwrap">
-          <img src="https://cdn.pixabay.com/photo/2016/02/19/15/46/labrador-retriever-1210559__480.jpg" />
+          <img src="https://images.pexels.com/photos/2706654/pexels-photo-2706654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
           <div class="fullcap">
-            This will cover the entire image!<br />
-            <button>Click!</button>
+            Space <br /><br /><br />
+            <button>View category</button>
           </div>
         </div>
       </main>

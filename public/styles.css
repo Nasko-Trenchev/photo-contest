@@ -248,11 +248,13 @@ p {
   top: 0;
   left: 0;
   text-align: center;
-  padding-top: 30%;
+  padding-top: 20%;
 
   /* (C3) COLORS */
   background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  font-family: "Indie Flower", cursive;
+  font-size: 30px;
+  color: wheat
 }
 
 /* (D) SHOW/HIDE */
@@ -260,6 +262,10 @@ p {
   visibility: none;
   opacity: 0;
   transition: opacity 0.3s;
+}
+
+.fullcap button {
+  background-color: rgb(64, 62, 62);
 }
 
 .fullwrap:hover .fullcap {
