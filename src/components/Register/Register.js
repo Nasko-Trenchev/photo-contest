@@ -4,8 +4,8 @@ export default function Register(){
 
     return (
         <>
-      <h1>Register</h1>
-      <p>Create a new account to submit your photos.</p>
+      <h1 className={styles["paragraph"]}>Register</h1>
+      <p className={styles["paragraph"]}>Create a new account to submit your photos.</p>
       <form className={styles["register-form"]}>
         <div class="form-group">
           <label for="username">Username</label>

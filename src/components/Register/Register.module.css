@@ -1,4 +1,9 @@
 /* Register Page Styles */
+
+.paragraph {
+  margin-top: 4rem;
+  text-align: center;
+}
 .register-form {
     max-width: 400px;
     margin: 0 auto;

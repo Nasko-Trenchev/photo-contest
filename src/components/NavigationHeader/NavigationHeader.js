@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 export default function NavigationHeader(){
 
     return (
@@ -7,11 +9,10 @@ export default function NavigationHeader(){
           <img src="asd" alt="Photo"/>
           </div>
         <ul class="navbar__list">
-          <li class="navbar__item"><a class="navbar__link" href="#">Home</a></li>
-          <li class="navbar__item"><a class="navbar__link" href="#">Submit Photo</a></li>
-          <li class="navbar__item"><a class="navbar__link" href="#">Gallery</a></li>
-          <li class="navbar__item"><a class="navbar__link" href="#">Login</a></li>
-          <li class="navbar__item"><a class="navbar__link" href="#">Register</a></li>
+          <li><NavLink className="navbar__item" to="/">Home</NavLink></li>
+          <li><NavLink className="navbar__item" to="/login">Login</NavLink></li>
+          <li><NavLink className="navbar__item" to="/register">Register</NavLink></li>
+          <li><NavLink className="navbar__item" to="/">Gallery</NavLink></li>
         </ul>
       </nav>
     </header>

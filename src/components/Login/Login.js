@@ -5,7 +5,7 @@ function Login(){
 
     return(
         <>
-        <h1>Login</h1>
+        <h1 className={styles["paragraph"]}>Login</h1>
         <form  className={styles["login-form"]}>
           <label htmlFor="email">Email:</label>
           <input type="email" id="email" name="email" required/>
