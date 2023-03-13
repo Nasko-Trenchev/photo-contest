@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import NavigationHeader from "./components/NavigationHeader/NavigationHeader";
+import Login from './components/Login/Login';
+import Register from "./components/Register/Register";
+import Gallery from "./components/Gallery/Gallery";
+import Details from "./components/Details/Details";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <NavigationHeader />
+      <main>
+        <h1>Welcome to the Photo Contest!</h1>
+        <p>Submit your best photos and win amazing prizes.</p>
+        <img src="./placeholder.jpg" alt="Sample photo" />
+      </main>
+      <footer>
+        <p className="p-text-size">&copy; 2023 Photo Contest. All rights reserved.</p>
+      </footer>
+    </>
   );
 }
 

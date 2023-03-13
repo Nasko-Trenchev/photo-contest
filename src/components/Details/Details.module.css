@@ -1,0 +1,106 @@
+/* Details Page Styles */
+.details-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  .photo-container {
+    max-width: 600px;
+    margin-bottom: 1rem;
+  }
+  
+  .photo {
+    width: 100%;
+    height: auto;
+  }
+  
+  .details-container {
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .name {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .like-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .like-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .like-button:hover {
+    background-color: #444;
+  }
+  
+  .like-count {
+    margin-left: 1rem;
+    font-size: 1rem;
+  }
+  
+  .comment-section {
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .comment-heading {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .comment {
+    margin-bottom: 1rem;
+  }
+  
+  .comment-author {
+    font-weight: bold;
+  }
+  
+  .comment-form {
+    margin-top: 1rem;
+  }
+  
+  .comment-label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .comment-input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    resize: vertical;
+  }
+  
+  .comment-button {
+    display: block;
+    margin-top: 0.5rem;
+    padding: 0.5rem 1rem;
+   
+  }  

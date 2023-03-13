@@ -1,0 +1,20 @@
+/* Register Page Styles */
+.register-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .register-form h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .register-form p {
+    margin-bottom: 1rem;
+  }
+  
+  .register-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }  
