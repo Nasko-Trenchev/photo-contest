@@ -8,9 +8,8 @@ export default function Details(){
   <div className="details-container">
     <h1 className="name">Product Name</h1>
     <div className="like-section">
-      <button className="like-button">
-        <i className="fas fa-heart"></i> Like
-      </button>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"/>
       <span className="like-count">100 Likes</span>
     </div>
     <div className="comment-section">

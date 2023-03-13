@@ -5,6 +5,7 @@ import Gallery from "./components/Gallery/Gallery";
 import Details from "./components/Details/Details";
 import Main from './components/Main/Main'
 import Footer from "./components/Footer/Footer";
+import ContestAnimals from "./components/ContestAnimals/ContestAnimals";
 
 import {Routes, Route} from "react-router-dom"
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/details" element={<Details/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
+      <Route path="/animals" element={<ContestAnimals/>}/>
     </Routes>
     <Footer/>
     </>
