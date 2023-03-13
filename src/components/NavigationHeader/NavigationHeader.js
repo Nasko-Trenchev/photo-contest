@@ -4,7 +4,7 @@ export default function NavigationHeader(){
         <header>
         <nav class="navbar__menu">
           <div className="logo">
-          <img src="../../" alt="Photo"/>
+          <img src="asd" alt="Photo"/>
           </div>
         <ul class="navbar__list">
           <li class="navbar__item"><a class="navbar__link" href="#">Home</a></li>
