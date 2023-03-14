@@ -7,7 +7,8 @@ import Main from './components/Main/Main'
 import Footer from "./components/Footer/Footer";
 import ContestAnimals from "./components/ContestAnimals/ContestAnimals";
 
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route} from "react-router-dom";
+import ContestNature from "./components/ContestNature/ContestNature";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/animals" element={<ContestAnimals/>}/>
+      <Route path="/nature" element={<ContestNature/>}/>
     </Routes>
     <Footer/>
     </>
