@@ -1,0 +1,51 @@
+.gallery {
+    box-sizing: border-box;
+}
+
+.gallery h1, h2 {
+    font-size: 32px;
+}
+
+.gallery section button {
+
+    margin-top: 100px;
+     color: black;
+    background-color: wheat;
+    font-weight: 500;
+    border-radius: 20px;
+}
+
+.gallery section {
+    border: 3px solid aliceblue;
+    min-height: 600px;
+    min-width: 800px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-flow: row wrap;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
+    
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin-top: 10px;
+}
+
+.box:nth-child(2){
+    order: -1;
+}
+
+.box:nth-child(1){
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.box img:hover {
+    transform: scale(1.2);
+}
+

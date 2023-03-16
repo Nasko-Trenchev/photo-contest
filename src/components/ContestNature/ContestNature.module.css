@@ -52,5 +52,10 @@
     color: black;
     background-color: wheat;
     font-weight: 500;
+    border-radius: 20px;
+  }
+  
+  .container button:hover {
+    background-color: rgba(245, 222, 179, 0.762);
   }
   

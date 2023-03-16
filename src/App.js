@@ -21,6 +21,7 @@ function App() {
       <Route path="/register" element={<Register/>}/>
       <Route path="/animals" element={<ContestAnimals/>}/>
       <Route path="/nature" element={<ContestNature/>}/>
+      <Route path="/galery" element={<Gallery/>}/>
     </Routes>
     <Footer/>
     </>
