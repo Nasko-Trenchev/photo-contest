@@ -12,7 +12,6 @@ export default function NavigationHeader(){
           <li><NavLink className="navbar__item" to="/">Home</NavLink></li>
           <li><NavLink className="navbar__item" to="/login">Login</NavLink></li>
           <li><NavLink className="navbar__item" to="/register">Register</NavLink></li>
-          <li><NavLink className="navbar__item" to="/">Gallery</NavLink></li>
           <li><NavLink className="navbar__item" to="/animals">Animals</NavLink></li>
           <li><NavLink className="navbar__item" to="/nature">Nature</NavLink></li>
         </ul>
