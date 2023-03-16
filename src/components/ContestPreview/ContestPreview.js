@@ -10,9 +10,9 @@ export default function ContestPreview({
             <img src={contest.imageUrl} />
             <div className={styles["image-overlay"]}>
                 <h3>{contest.contestName}</h3>
-                <p>Participants count</p>
+                <p>Participants count:</p>
                 <p>Time left:</p>
-                <p>{contest.prize}</p>
+                <p>Contest Prize: {contest.prize}</p>
                 <button>Browse contest</button>
             </div>
         </div>
