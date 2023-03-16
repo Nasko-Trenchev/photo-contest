@@ -6,3 +6,11 @@ export const getNautreContests = async () => {
 
     return result
 }
+
+export const getCurrentContestImages = async () => {
+
+    const response = await fetch("http://localhost:3030/jsonstore/contest/nature/photos")
+    const result = await response.json();
+
+    return result
+}
