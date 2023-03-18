@@ -14,3 +14,13 @@ export const getCurrentContestImages = async () => {
 
     return result
 }
+
+export const getAllContests = async () => {
+
+    const response = await fetch("http://localhost:3030/data/contests")
+
+    const result = await response.json();
+    
+    return result;
+    
+}

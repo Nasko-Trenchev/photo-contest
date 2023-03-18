@@ -7,11 +7,26 @@ import Main from './components/Main/Main'
 import Footer from "./components/Footer/Footer";
 import ContestAnimals from "./components/ContestAnimals/ContestAnimals";
 
+import { userContext } from "./contexts/userContext";
+
 import {Routes, Route} from "react-router-dom";
 import ContestNature from "./components/ContestNature/ContestNature";
+import { useState } from "react";
+import Logout from "./components/Logout/Logout";
+import {useLocalStorage} from './hooks/useLocalStorage';
 
 function App() {
+  const [user, setUser] = useLocalStorage("user", {});
+
+  const userLoginHandler = (userData) =>{
+    setUser(userData)
+  }
+
+  const userLogoutHandler = () =>{
+    setUser({});
+  }
   return (
+    <userContext.Provider value={{user, userLoginHandler, userLogoutHandler}}>
     <>
     <NavigationHeader/>
     <Routes>
@@ -22,9 +37,12 @@ function App() {
       <Route path="/animals" element={<ContestAnimals/>}/>
       <Route path="/nature" element={<ContestNature/>}/>
       <Route path="/galery" element={<Gallery/>}/>
+      <Route path="/logout" element={<Logout/>}/>
+
     </Routes>
     <Footer/>
     </>
+    </userContext.Provider>
   );
 }
 

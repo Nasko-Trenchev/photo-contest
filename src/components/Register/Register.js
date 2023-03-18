@@ -22,6 +22,10 @@ export default function Register(){
     .then(authData => {
       console.log(authData);
     })
+    .catch(() => {
+      // TODO: Navigate to 404
+      console.log("error");
+    })
     
   }
     return (
