@@ -1,60 +1,68 @@
+import { useState, useEffect } from 'react'
+
+import styles from './Main.module.css'
+
 import { useNavigate } from 'react-router-dom';
 
-import { useState, useEffect } from 'react';
+import * as ContestService from '../../services/ContestService'
 
-import * as contestService from "../../services/ContestService"
 
-export default function Main(){
+export default function Main() {
 
-  const [currentContests, setCurrentContests] = useState([]);
+    const [currenCategories, setCurrentCategories] = useState([]);
 
-  useEffect(() => {
-
-    contestService.getAllContests()
-    .then(result => {
-      setCurrentContests(result);
-    })
-   
-
-  }, [])
-  const navigate = useNavigate();
-
-  const handleOption = (category) => {
-    navigate(`/${category}`);
-  };
-
+    useEffect(() => {
+      ContestService.getAllCategories()
+        .then(result => {
+            if(result.code !== 404){
+                setCurrentCategories(result);
+            }
+        })
+    }, [])
+  
+    const navigate = useNavigate();
+  
+    const handleOption = (Id) => {
+      navigate(`/categories/${Id}`);
+    };
+  
     return (
-        <main>
-        <h1>Welcome to the Photo Contest!</h1>
-        <p>Patricipate in one of the below categories</p>
-        {/* {currentContests.map(contest => <div key={contest._id} className="fullwrap">
-          <img src={contest.imageUrl} />
-          <div className="fullcap">
-            Animals<br /><br /><br />
-            <button onClick={()=>handleOption(contest.name)}>View current contests</button>
-          </div>
-        </div>)} */}
-        {/* <div key={contest._id} className="fullwrap">
-          <img src="https://images.pexels.com/photos/2922672/pexels-photo-2922672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div className="fullcap">
-            Animals<br /><br /><br />
-            <button onClick={()=>handleOption("nature")}>View current contests</button>
-          </div>
-        </div>)} */}
-        {/* <div className="fullwrap">
-          <img src="https://images.pexels.com/photos/345522/pexels-photo-345522.jpeg?auto=compress&cs=tinysrgb&w=600" />
-          <div className="fullcap">
-            Nature<br /><br /><br />
-            <button onClick={()=>navigate('/nature')}>View current contests</button>
-          </div>
-        </div>
-        <div className="fullwrap">
-          <img src="https://images.pexels.com/photos/2706654/pexels-photo-2706654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
-          <div className="fullcap">
-            Space <br /><br /><br />
-            <button>View current contests</button>
-          </div> */}
-        {/* </div> */}
-      </main>
+        <main className={styles['gallery']}>
+            <h1>Select contest to participate in:</h1>
+            <section>
+            {currenCategories.length !== 0 ? currenCategories.map(category =>
+                <div className={styles["box"]}>
+                    <img src={category.imageUrl} />
+                    <div className={styles["image-overlay"]}>
+                        <h3>{category.name}</h3>
+                        <button onClick={()=>handleOption(category._id)}>View category</button>
+                    </div>
+                </div>) : <p>There aren`t any categories yet</p>}
+            </section>   
+                {/* TODO: Render the nature contests from the server */}
+                {/* {currentContest.map(x => <ContestPreview key={x._id} contest={x}/>)} */}
+                {/* <div className={styles["image-container"]}>
+                    <img src="https://images.pexels.com/photos/2922672/pexels-photo-2922672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <div className={styles["image-overlay"]}>
+                        <h3>Contest name</h3>
+                        <p>Participants count</p>
+                        <p>Time left:</p>
+                        <p>Prize</p>
+                        <button>Browse contest</button>
+                    </div>
+                </div>
+                <div className={styles["image-container"]}>
+                    <img src="https://images.pexels.com/photos/2922672/pexels-photo-2922672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                    <div className={styles["image-overlay"]}>
+                        <h3>Image 2</h3>
+                        <p>Paragraph 1</p>
+                        <p>Paragraph 2</p>
+                        <p>Paragraph 3</p>
+                        <button>Button</button>
+                    </div>
+                </div> */}
+           
+            {/* <h1>There aren`t any contests for this category</h1> */}
+        </main>
     )
 }

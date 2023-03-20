@@ -7,7 +7,7 @@ export default function ContestPhotos({
 
     return(
         <div className={styles["box"]}>
-            <img src={data.imageUrl} alt="Rank 1" />
+            <img src={data.photos.imageUrl} alt="Rank 1" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 {/* <p>Uploaded by:</p> */}

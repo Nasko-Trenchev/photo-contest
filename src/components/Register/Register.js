@@ -1,8 +1,12 @@
-import styles from "./Register.module.css"
-
-import {register} from '../../services/AuthService'
+import styles from "./Register.module.css";
+import { useContext } from "react";
+import { userContext } from "../../contexts/userContext";
+import { useNavigate } from "react-router-dom";
+import {register} from '../../services/AuthService';
 
 export default function Register(){
+  const navigate = useNavigate();
+  const {userLoginHandler} = useContext(userContext)
 
   const onRegisterSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +16,6 @@ export default function Register(){
     const email = data.get("email");
     const password = data.get("password")
     const confirmPassword = data.get("confirm-password")
-    console.log(email)
 
     if(password !== confirmPassword){
       return
@@ -20,8 +23,9 @@ export default function Register(){
 
     register(email, password)
     .then(authData => {
-      console.log(authData);
-    })
+      userLoginHandler(authData)
+      navigate('/');
+      })
     .catch(() => {
       // TODO: Navigate to 404
       console.log("error");

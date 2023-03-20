@@ -1,34 +1,41 @@
+import { useParams, NavLink, Navigate, useNavigate } from 'react-router-dom'
 import styles from './Gallery.module.css'
 import * as ContestService from '../../services/ContestService'
 
 import { useState, useEffect } from 'react'
 import ContestPhotos from '../ContestPhotos/ContestPhotos'
 
-export default function Gallery(){
+export default function Gallery() {
 
-  const [currentPhotos, setCurrentPhotos] = useState([])
+    const [currentPhotos, setCurrentPhotos] = useState([])
+    const { categoryId } = useParams();
 
-  useEffect(() => {
-    ContestService.getCurrentContestImages()
-    .then(result => {
-      setCurrentPhotos(Object.values(result))
-    })
-}, [])
+    useEffect(() => {
+      ContestService.getCurrentContestImages(categoryId)
+      .then(result => {
+        console.log(result);
+        setCurrentPhotos(Object.values(result))
+      })
+  }, [])
 
-    return (
-       <main className={styles['gallery']} >
-        <h1>Contest name</h1>
+  const navigate = useNavigate();
 
-        <div>
-          <input name="searcform" id="serachform" placeholder='Search photo by name'></input>
-        </div>
+  const handleOption = (Id) => {
+    navigate(`/categories/${Id}/photos`);
+  };
 
-        <h2>The three most liked photos:</h2>
+  return (
+    <main className={styles['gallery']} >
+      <button onClick={()=> handleOption(categoryId)}>Create photo</button>
+      <h1>Contest name</h1>
+      <div>
+        <input name="searcform" id="serachform" placeholder='Search photo by name'></input>
+      </div>
+      <h2>The three most liked photos:</h2>
+      <section>
 
-        <section>
-
-          {currentPhotos.map(x=> <ContestPhotos key={x._id} data={x}/>)}
-          {/* <div className={styles["box"]}>
+        {currentPhotos.map(x => <ContestPhotos key={x._id} data={x}/>)}
+        {/* <div className={styles["box"]}>
             <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFyZ2UlMjBkb2d8ZW58MHx8MHx8&w=1000&q=80" alt="Rank 1" />
             <div className={styles["image-overlay"]}>
                 <h3>Name</h3>
@@ -37,8 +44,8 @@ export default function Gallery(){
                 <button>See details</button>
             </div>
           </div> */}
-          {/* TODO: Render the second and third pictures */}
-          {/* <div className={styles["box"]}>
+        {/* TODO: Render the second and third pictures */}
+        {/* <div className={styles["box"]}>
             <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFyZ2UlMjBkb2d8ZW58MHx8MHx8&w=1000&q=80" alt="Rank 2" />
             <div className={styles["image-overlay"]}>
             <h3>Name</h3>
@@ -56,12 +63,12 @@ export default function Gallery(){
                 <button>See details</button>
             </div>
           </div> */}
-        </section>
-        <button>More details</button>
+      </section>
+      <button>More details</button>
 
-        <section id="#more">
+      <section id="#more">
 
-        </section>
-       </main>
-    )
+      </section>
+    </main>
+  )
 }

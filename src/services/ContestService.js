@@ -1,26 +1,33 @@
+import * as request from "../services/requester"
 
-export const getNautreContests = async () => {
+const baseUrl = "http://localhost:3030/data/categories";
 
-    const response = await fetch("http://localhost:3030/jsonstore/contest/nature")
-    const result = await response.json();
+export const getAllCategories = async () => {
 
-    return result
-}
-
-export const getCurrentContestImages = async () => {
-
-    const response = await fetch("http://localhost:3030/jsonstore/contest/nature/photos")
-    const result = await response.json();
-
-    return result
-}
-
-export const getAllContests = async () => {
-
-    const response = await fetch("http://localhost:3030/data/contests")
+    const response = await fetch(baseUrl)
 
     const result = await response.json();
-    
+
     return result;
-    
+}
+
+export const createPhoto = async (data) => {
+
+    const response = await request.post(`http://localhost:3030/data/photos`, data)
+    return response;
+}
+
+export const createCategory = async (data) => {
+    const response = await request.post(baseUrl, data)
+   
+    return response;
+}
+
+export const getCurrentContestImages = async (categoryId) => {
+
+    const relations = encodeURIComponent(`photos=categoryId:photos`)
+    const where = encodeURIComponent(`categoryId="${categoryId}"`)
+    const response = await request.get(`${baseUrl}?load=${relations}`)
+    console.log(response);
+    return response;
 }
