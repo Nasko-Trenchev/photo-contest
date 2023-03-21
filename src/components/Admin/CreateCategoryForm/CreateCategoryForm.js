@@ -11,9 +11,10 @@ const createContest = (e) => {
     const {
       imageUrl,
       name,
+      prize
     } = Object.fromEntries(new FormData(e.target));
 
-    contestService.createCategory({imageUrl, name})
+    contestService.createCategory({imageUrl, name ,prize})
     .then(data=> {
       console.log(data);
     })
@@ -27,7 +28,9 @@ const createContest = (e) => {
           <input type="text" id="imageUrl" name="imageUrl" required />
           <label htmlFor="name">Category name:</label>
           <input type="text" id="name" name="name" required />
-          <button type="submit">Log in</button>
+          <label htmlFor="prize">Category prize</label>
+          <input type="text" id="prize" name="prize" required />
+          <button type="submit">Create</button>
         </form>
         </>
     )

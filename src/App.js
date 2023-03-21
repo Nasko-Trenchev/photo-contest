@@ -34,12 +34,13 @@ function App() {
       <Route path="/" element={<Main/>}/>
       <Route path="/details" element={<Details/>}/>
       <Route path="/login" element={<Login/>}/>
-      <Route path="/register" element={<Register/>}/>
+      <Route path="/register" element={<Register/>}/> 
       <Route path="/categories/:categoryId" element={<Gallery/>}/>
       <Route path="/galery" element={<Gallery/>}/>
       <Route path="/logout" element={<Logout/>}/>
       <Route path="/createCategory" element={<CreateCategoryForm/>}/>
       <Route path="/categories/:categoryId/photos" element={<Photos/>}/>
+      <Route path="/photos/:photoId" element={<Details/>}/>
       <Route path="/createContest" element={<CreateContest/>}/>
       <Route path="/admin" element={<Admin/>}/>
     </Routes>

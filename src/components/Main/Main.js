@@ -28,16 +28,20 @@ export default function Main() {
   
     return (
         <main className={styles['gallery']}>
-            <h1>Select contest to participate in:</h1>
+            <h1>Welcome to the photo contest!</h1>
+            
+            {currenCategories.length !==0 &&  <h2>Select category to participate in:</h2>}
+           
             <section>
             {currenCategories.length !== 0 ? currenCategories.map(category =>
-                <div className={styles["box"]}>
+                <div key={category._id} className={styles["box"]}>
                     <img src={category.imageUrl} />
                     <div className={styles["image-overlay"]}>
-                        <h3>{category.name}</h3>
+                        <h2>{category.name}</h2>
+                        <p>Prize: {category.prize}</p>
                         <button onClick={()=>handleOption(category._id)}>View category</button>
                     </div>
-                </div>) : <p>There aren`t any categories yet</p>}
+                </div>) : <h2>There aren`t any categories yet</h2>}
             </section>   
                 {/* TODO: Render the nature contests from the server */}
                 {/* {currentContest.map(x => <ContestPreview key={x._id} contest={x}/>)} */}

@@ -27,7 +27,12 @@ export const getCurrentContestImages = async (categoryId) => {
 
     const relations = encodeURIComponent(`photos=categoryId:photos`)
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
-    const response = await request.get(`${baseUrl}?load=${relations}`)
-    console.log(response);
+    const response = await request.get(`http://localhost:3030/data/photos?where=${where}`)
+    return response;
+}
+
+export const getImageDetails = async (id) => {
+
+    const response = await request.get(`http://localhost:3030/data/photos/${id}`)
     return response;
 }

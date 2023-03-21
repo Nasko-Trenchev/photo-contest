@@ -3,8 +3,9 @@
     box-sizing: border-box;
 }
 
-.gallery h1, h2, h3 {
-    font-size: 32px;
+.gallery h1 {
+    font-size: 48px;
+    padding-top: 40px;
 }
 
 .gallery section button {
@@ -22,9 +23,10 @@
     display: flex;
     justify-content: space-evenly;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: top;
     transition: transform 0.2s ease-in-out;
     margin-bottom: 50px;
+    margin-top: 50px;
 }
 
 .box {
@@ -34,7 +36,7 @@
     align-items: center;
     width: 400px;
     height: 350px;
-    margin: 50px;
+    margin: 20px;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -59,15 +61,17 @@
 }
 
 .image-overlay p {
-    font-size: 16px;
+    font-size: 26px;
     line-height: 1.5; 
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+    font-family: "Indie Flower", cursive;
+    color: wheat
 }
 
-.image-overlay h3 {
-    margin-top: 40px;
-    line-height: 1.5; 
+.image-overlay h2 {
+   padding-top: 50px;
 }
+
 .box:hover .image-overlay {
     transform: scale(1.0);
     opacity: 1; 

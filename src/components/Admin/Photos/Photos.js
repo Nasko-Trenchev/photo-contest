@@ -26,16 +26,14 @@ export default function Photos() {
 
     return (
         <>
-            <h1 className={styles["paragraph"]}>Create Photos</h1>
+            <h1 className={styles["paragraph"]}>Join contest</h1>
             <form className={styles["login-form"]} onSubmit={submitCategory}>
-                <label htmlFor="contestName">Photo name:</label>
-                <input type="text" id="contestName" name="contestName" required />
+                <label htmlFor="name">Photo name:</label>
+                <input type="text" id="name" name="name" required />
                 <label htmlFor="imageUrl">Image URL:</label>
                 <input type="text" id="imageUrl" name="imageUrl" required />
-                <label htmlFor="participants">Participants count:</label>
-                <input type="text" id="participants" name="participants" required />
-                <label htmlFor="prize">Contest prize</label>
-                <input type="text" id="prize" name="prize" required />
+                <label htmlFor="description">Photo description:</label>
+                <input type="text" id="description" name="description" required />
                 <button type="submit">Create</button>
             </form>
         </>

@@ -25,7 +25,6 @@ h6 {
   margin-bottom: 1rem;
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
   font-family: "Indie Flower", cursive;
   color: wheat
 }
@@ -197,7 +196,7 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin-top: 6rem;
+  margin-top: 4rem;
 }
 
 /* (A) WRAPPER */
