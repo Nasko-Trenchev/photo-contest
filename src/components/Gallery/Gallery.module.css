@@ -16,7 +16,6 @@
 }
 
 .gallery section {
-    border: 3px solid aliceblue;
     min-height: 600px;
     min-width: 800px;
     display: flex;
@@ -46,6 +45,7 @@
     align-self: flex-start;
     margin-top: 10px;
 }
+
 
 .image-overlay {
     position: absolute;
