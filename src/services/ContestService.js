@@ -36,3 +36,14 @@ export const getImageDetails = async (id) => {
     const response = await request.get(`http://localhost:3030/data/photos/${id}`)
     return response;
 }
+
+export const createLike = async (data) => {
+    const response = await request.post(`http://localhost:3030/data/likes`, data)
+    return response;
+}
+
+export const getLikeCount = async (photoId) =>{
+    const where = encodeURIComponent(`photoId="${photoId}"`)
+    const response = await request.get(`http://localhost:3030/data/likes?where=${where}&count`,)
+    return response;
+}

@@ -18,7 +18,7 @@ export default function Photos() {
             prize
         } = Object.fromEntries(new FormData(e.target));
 
-        contestService.createPhoto({categoryId, imageUrl, contestName, participants, prize})
+        contestService.createPhoto({categoryId, imageUrl, contestName, participants, prize, likes: 0})
             .then(data => {
                 console.log(data);
             })

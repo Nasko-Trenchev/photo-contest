@@ -4,7 +4,6 @@ const request = async (method, url, data) => {
     try {
         const authString = localStorage.getItem("user");
         const auth = JSON.parse(authString || '{}');
-
         let headers = {};
 
         if(auth.accessToken) {
