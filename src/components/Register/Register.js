@@ -14,6 +14,7 @@ export default function Register(){
     const data = new FormData(e.target);
 
     const email = data.get("email");
+    const username= data.get("username")
     const password = data.get("password")
     const confirmPassword = data.get("confirm-password")
 
@@ -21,7 +22,7 @@ export default function Register(){
       return
     }
 
-    register(email, password)
+    register(email, password, username)
     .then(authData => {
       userLoginHandler(authData)
       navigate('/');
@@ -40,6 +41,10 @@ export default function Register(){
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input type="username" id="username" name="username" required/>
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
