@@ -54,12 +54,12 @@ export const getLikeCount = async (photoId) =>{
     return response;
 }
 
-export const testLikes = async (categoryId) =>{
+export const getTopPhotos = async (categoryId) =>{
     const relations = encodeURIComponent(`photo=photoId:photos`)
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
     const response = await request.get(`http://localhost:3030/data/likes?where=${where}&load=${relations}`,)
 
-    const a = response.reduce((acc, current) => {
+    const objectWithArrays = response.reduce((acc, current) => {
         if(acc[current.photoId]){
             acc[current.photoId].push(current)
         } else {
@@ -67,13 +67,16 @@ export const testLikes = async (categoryId) =>{
         }
        return acc;
     }, {})
-    const asArray = Object.entries(a);
+    const asArray = Object.entries(objectWithArrays);
 
-    const sorted = asArray.sort((a,b) => b[1].length - a[1].length)
-    const final = sorted.map(x => Object.values(x[1].map(y => y.photo)))
-    const finalFinal = final.map(x => Object.values(x)[0])
+    const sortedByLikesArrayLenght = asArray.sort((a,b) => b[1].length - a[1].length)
+    const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
+    const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])
 
-    return finalFinal;
+    if(topPhotosByLikes.length < 3){
+        return topPhotosByLikes;
+    }
+    return topPhotosByLikes.slice(0, 3);
     // const nova = Object.fromEntries(asArray);
 
     // const keys = Object.values(nova);

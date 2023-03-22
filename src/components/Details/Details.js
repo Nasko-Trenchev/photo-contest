@@ -54,13 +54,6 @@ export default function Details() {
       
   }
 
-  const test = (categoryId) => {
-
-    ContestService.testLikes(categoryId)
-    .then(result=> {
-    })
-  }
-
   return (
     <main className={styles["details-page"]}>
       <div className={styles["photo-container"]}>
@@ -80,7 +73,6 @@ export default function Details() {
               <button>Edit</button>
               <button>Delete</button>
             </>}
-          <span className={styles["like-count"]}>{likeCount}</span>
         </div>
         <div className={styles["comment-section"]}>
           <h2 className={styles["comment-heading"]}>Comments</h2>
