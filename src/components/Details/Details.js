@@ -58,7 +58,6 @@ export default function Details() {
 
     ContestService.testLikes(categoryId)
     .then(result=> {
-      console.log(result);
     })
   }
 

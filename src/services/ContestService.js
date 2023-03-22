@@ -55,13 +55,10 @@ export const getLikeCount = async (photoId) =>{
 }
 
 export const testLikes = async (categoryId) =>{
-
+    const relations = encodeURIComponent(`photo=photoId:photos`)
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
-    const response = await request.get(`http://localhost:3030/data/likes?where=${where}`,)
+    const response = await request.get(`http://localhost:3030/data/likes?where=${where}&load=${relations}`,)
 
-    // const news = response.map(x=> ({...x, isCounted: false}))
-
-    debugger;
     const a = response.reduce((acc, current) => {
         if(acc[current.photoId]){
             acc[current.photoId].push(current)
@@ -70,24 +67,20 @@ export const testLikes = async (categoryId) =>{
         }
        return acc;
     }, {})
-    console.log(a);
-    // let likesCount = {};
-    //     if(response.length > 0) {
-    //         a.forEach(element => {
-    //             if(likesCount[element.photoId]) {
-    //                 likesCount[element.photoId]++;
-    //             }
-    //             else{
-    //                 likesCount[element.photoId] = 1;
-    //             }
-    //         });
-    //     }
-  const asArray = Object.entries(a);
+    const asArray = Object.entries(a);
 
-  console.log(asArray.sort((a,b) => b[1].length - a[1].length))
-    // const sorted = Object.keys(likesCount).sort(function(a,b){return likesCount[b]-likesCount[a]});
+    const sorted = asArray.sort((a,b) => b[1].length - a[1].length)
+    const final = sorted.map(x => Object.values(x[1].map(y => y.photo)))
+    const finalFinal = final.map(x => Object.values(x)[0])
+
+    return finalFinal;
+    // const nova = Object.fromEntries(asArray);
+
+    // const keys = Object.values(nova);
+
+    // const justPhotos = keys[0].map(({photo}) => ({photo}))
+    // const values = justPhotos.map(x => Object.values(x)[0])
+    // return finalFinal;
+
     // const top3 = topPhotos.slice(0, 3);
-
-    // console.log(top3);
-    // return top3;
 }

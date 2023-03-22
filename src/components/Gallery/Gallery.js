@@ -11,9 +11,8 @@ export default function Gallery() {
     const { categoryId } = useParams();
 
     useEffect(() => {
-      ContestService.getCurrentContestImages(categoryId)
+      ContestService.testLikes(categoryId)
       .then(result => {
-        console.log(result);
         setTopPhotos(Object.values(result))
       })
   }, [categoryId])
