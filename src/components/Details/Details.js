@@ -11,6 +11,7 @@ export default function Details() {
   const [currentPhoto, setCurrentPhoto] = useState({});
   const [likeCount, setLikeCount] = useState(0);
   const [comments, setComments] = useState([]);
+  const [currentComment, setCurrentComment] = useState('');
 
   const { photoId } = useParams();
 
@@ -23,6 +24,9 @@ export default function Details() {
       .then(result => {
         setLikeCount(result);
       });
+  }, [photoId])
+
+  useEffect(() => {
     CommentService.getComments(photoId)
       .then(result => {
         setComments(result);
@@ -33,39 +37,46 @@ export default function Details() {
 
   const increaseLike = () => {
     setLikeCount(oldValue => oldValue + 1)
-    ContestService.createLike({ photoId: currentPhoto._id })
+    ContestService.createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
       .then(result => {
         console.log(result)
       })
   }
 
   const createComment = (e) => {
+    debugger;
     e.preventDefault();
-    const {
-      comment,
-    } = Object.fromEntries(new FormData(e.target));
-
-    CommentService.createComment({ photoId: photoId, comment })
+    CommentService.createComment({ photoId: photoId, user: user, comment: currentComment })
       .then(result => {
-        setComments(result);
+        setComments(oldstate => [...oldstate, result]);
+        setCurrentComment('');
       })
+      
+  }
+
+  const test = (categoryId) => {
+
+    ContestService.testLikes(categoryId)
+    .then(result=> {
+      console.log(result);
+    })
   }
 
   return (
     <main className={styles["details-page"]}>
       <div className={styles["photo-container"]}>
         <h1 className={styles["name"]}>Name : uploaded by: {likeCount} </h1>
-        <img src={currentPhoto.imageUrl} alt="Photo" className={styles["photo"]} />
+        <img src={currentPhoto.imageUrl} alt="Phosto" className={styles["photo"]} />
       </div>
       <div className={styles["details-container"]}>
         <h1 className={styles["name"]}>{currentPhoto.contestName}</h1>
         <div className={styles["like-section"]}>
           {user._id !== currentPhoto._ownerId ?
             <>
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png" alt="Phsoto"
                 onClick={() => increaseLike()} />
-              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png"
-                onClick={() => increaseLike()} />
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" alt="Pshoto"
+                onClick={() => test(currentPhoto.categoryId)} />
             </> : <>
               <button>Edit</button>
               <button>Delete</button>
@@ -78,7 +89,7 @@ export default function Details() {
             {comments.length > 0 ? (comments.map(x =>
               <li key={x._id} className={styles["comment"]}>
                 <span className={styles["comment-author"]}>{x.user.username}:</span> {x.comment}
-              </li>)) : <p>There are no comment for this picture. Be the first to comment!</p>}
+              </li>)) : <p>There are no comments for this picture. Be the first to post!</p>}
             {/* <li className={styles["comment"]}>
               <span className={styles["comment-author"]}>John Doe:</span> This is a great product!
             </li>
@@ -88,7 +99,10 @@ export default function Details() {
           </ul>
           <form className={styles["comment-form"]} onSubmit={createComment}>
             <label htmlFor="comment" className={styles["comment-label"]}>Leave a Comment:</label>
-            <textarea id="comment" name="comment" className={styles["comment-input"]} required></textarea>
+            <textarea id="comment" name="comment" className={styles["comment-input"]}
+              value={currentComment}
+              onChange={(e) => setCurrentComment(e.target.value)} required>
+             </textarea>
             <button type="submit" className={styles["comment-button"]}>Post Comment</button>
           </form>
         </div>

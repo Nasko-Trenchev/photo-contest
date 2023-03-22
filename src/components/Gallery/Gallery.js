@@ -1,4 +1,4 @@
-import { useParams, NavLink, Navigate, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import styles from './Gallery.module.css'
 import * as ContestService from '../../services/ContestService'
 
@@ -7,16 +7,16 @@ import ContestPhotos from '../ContestPhotos/ContestPhotos'
 
 export default function Gallery() {
 
-    const [currentPhotos, setCurrentPhotos] = useState([])
+    const [topPhotos, setTopPhotos] = useState([])
     const { categoryId } = useParams();
 
     useEffect(() => {
       ContestService.getCurrentContestImages(categoryId)
       .then(result => {
         console.log(result);
-        setCurrentPhotos(Object.values(result))
+        setTopPhotos(Object.values(result))
       })
-  }, [])
+  }, [categoryId])
 
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ export default function Gallery() {
       <h2>The three most liked photos:</h2>
       <section>
 
-        {currentPhotos.map(x => <ContestPhotos key={x._id} data={x}/>)}
+        {topPhotos.map(x => <ContestPhotos key={x._id} data={x}/>)}
         {/* <div className={styles["box"]}>
             <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFyZ2UlMjBkb2d8ZW58MHx8MHx8&w=1000&q=80" alt="Rank 1" />
             <div className={styles["image-overlay"]}>

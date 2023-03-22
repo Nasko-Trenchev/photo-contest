@@ -35,7 +35,7 @@ export default function Main() {
             <section>
             {currenCategories.length !== 0 ? currenCategories.map(category =>
                 <div key={category._id} className={styles["box"]}>
-                    <img src={category.imageUrl} />
+                    <img src={category.imageUrl} alt="Photos" />
                     <div className={styles["image-overlay"]}>
                         <h2>{category.name}</h2>
                         <p>Prize: {category.prize}</p>
