@@ -15,6 +15,7 @@ import CreateCategoryForm from './components/Admin/CreateCategoryForm/CreateCate
 import Admin from "./components/Admin/Admin";
 import CreateContest from "./components/Admin/Photos/Photos";
 import Photos from "./components/Admin/Photos/Photos";
+import EditPhoto from "./components/EditPhoto/EditPhoto";
 
 function App() {
   const [user, setUser] = useLocalStorage("user", {});
@@ -39,8 +40,9 @@ function App() {
       <Route path="/galery" element={<Gallery/>}/>
       <Route path="/logout" element={<Logout/>}/>
       <Route path="/createCategory" element={<CreateCategoryForm/>}/>
-      <Route path="/categories/:categoryId/photos" element={<Photos/>}/>
+      <Route path="/categories/:categoryId/createPhoto" element={<Photos/>}/>
       <Route path="/photos/:photoId" element={<Details/>}/>
+      <Route path="/edit/:categoryId/:photoId" element={<EditPhoto/>}/>
       <Route path="/createContest" element={<CreateContest/>}/>
       <Route path="/admin" element={<Admin/>}/>
     </Routes>

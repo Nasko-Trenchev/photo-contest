@@ -1,9 +1,9 @@
-import { useParams, useNavigate } from 'react-router-dom'
-import styles from './Gallery.module.css'
-import * as ContestService from '../../services/ContestService'
+import { useParams, useNavigate } from 'react-router-dom';
+import styles from './Gallery.module.css';
+import * as ContestService from '../../services/ContestService';
 
-import { useState, useEffect } from 'react'
-import ContestPhotos from '../ContestPhotos/ContestPhotos'
+import { useState, useEffect } from 'react';
+import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
 
 export default function Gallery() {
 
@@ -28,10 +28,10 @@ export default function Gallery() {
   const navigate = useNavigate();
 
   const handleOption = (Id) => {
-    navigate(`/categories/${Id}/photos`);
+    navigate(`/categories/${Id}/createPhoto`);
   };
 
-
+console.log(topPhotos);
 
   return (
     <main className={styles['gallery']} >
@@ -42,13 +42,13 @@ export default function Gallery() {
       </div>
       <h2>The three most liked photos:</h2>
       <section>
-        {topPhotos.map(x => <ContestPhotos key={x._id} data={x}/>)}
+        {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x}/>)}
       </section>
       <button onClick={()=>setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos": "Load all photos"}</button>
 
-      <section id="#more">
-        {showPhotos && (allPhotos.map(x => Object.values(topPhotos).some(y=> y._id === x._id) 
-        ? null : <ContestPhotos key={x._id} data={x}/>))}
+      <section>
+        {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y=> y._id === x._id) 
+        ? null : <MostLikedPhotos key={x._id} data={x}/>))}
       </section>
     </main>
   )

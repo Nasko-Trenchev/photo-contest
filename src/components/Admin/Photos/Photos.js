@@ -12,13 +12,13 @@ export default function Photos() {
         e.preventDefault();
 
         const {
-            contestName,
+            name,
             imageUrl,
-            participants,
-            prize
+            description,
+            price
         } = Object.fromEntries(new FormData(e.target));
 
-        contestService.createPhoto({categoryId, imageUrl, contestName, participants, prize, likes: 0})
+        contestService.createPhoto({categoryId, name, imageUrl, description, price})
             .then(data => {
                 console.log(data);
             })
@@ -34,6 +34,8 @@ export default function Photos() {
                 <input type="text" id="imageUrl" name="imageUrl" required />
                 <label htmlFor="description">Photo description:</label>
                 <input type="text" id="description" name="description" required />
+                <label htmlFor="price">Photo price:</label>
+                <input type="text" id="price" name="price" required />
                 <button type="submit">Create</button>
             </form>
         </>

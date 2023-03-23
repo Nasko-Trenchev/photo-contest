@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
 import * as ContestService from '../../services/ContestService';
 import * as CommentService from '../../services/CommentService';
@@ -14,6 +14,8 @@ export default function Details() {
   const [currentComment, setCurrentComment] = useState('');
 
   const { photoId } = useParams();
+  const { user } = useContext(userContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     ContestService.getImageDetails(photoId)
@@ -22,7 +24,9 @@ export default function Details() {
       });
     ContestService.getLikeCount(photoId)
       .then(result => {
-        setLikeCount(result);
+        if(result.code !== 404) {
+          setLikeCount(result);
+        }
       });
   }, [photoId])
 
@@ -33,7 +37,6 @@ export default function Details() {
       })
   }, [photoId])
 
-  const { user } = useContext(userContext)
 
   const increaseLike = () => {
     setLikeCount(oldValue => oldValue + 1)
@@ -44,7 +47,6 @@ export default function Details() {
   }
 
   const createComment = (e) => {
-    debugger;
     e.preventDefault();
     CommentService.createComment({ photoId: photoId, user: user, comment: currentComment })
       .then(result => {
@@ -57,7 +59,7 @@ export default function Details() {
   return (
     <main className={styles["details-page"]}>
       <div className={styles["photo-container"]}>
-        <h1 className={styles["name"]}>Name : uploaded by: {likeCount} </h1>
+        <h1 className={styles["name"]}>{currentPhoto.name}: uploaded by: {likeCount} </h1>
         <img src={currentPhoto.imageUrl} alt="Phosto" className={styles["photo"]} />
       </div>
       <div className={styles["details-container"]}>
@@ -70,7 +72,7 @@ export default function Details() {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" alt="Pshoto"
                 onClick={() => test(currentPhoto.categoryId)} />
             </> : <>
-              <button>Edit</button>
+              <button onClick={()=> navigate(`/edit/${currentPhoto.categoryId}/${currentPhoto._id}`)}>Edit</button>
               <button>Delete</button>
             </>}
         </div>

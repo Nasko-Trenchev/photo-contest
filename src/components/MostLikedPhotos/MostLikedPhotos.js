@@ -1,10 +1,10 @@
-import styles from './ContestPhotos.module.css'
+import styles from './MostLikedPhotos.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import * as ContestService from '../../services/ContestService';
 
-export default function ContestPhotos({
+export default function MostLikedPhotos({
     data
 }){
 
@@ -13,7 +13,9 @@ export default function ContestPhotos({
     useEffect(() =>{
         ContestService.getLikeCount(data._id)
         .then(result => {
-            setLikeCount(result);
+            if(result.code !== 404){
+                setLikeCount(result);
+            }
         })
     })
     const navigate = useNavigate();
@@ -29,7 +31,7 @@ export default function ContestPhotos({
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 {/* <p>Uploaded by:</p> */}
-                <p>Current likes {likeCount}</p>
+                {likeCount && <p>Current likes {likeCount}</p>}
                 <button onClick={()=>handleOption(data._id)}>See details</button>
             </div>
           </div>
