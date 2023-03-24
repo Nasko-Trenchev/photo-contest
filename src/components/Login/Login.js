@@ -1,8 +1,8 @@
-import styles from './Login.module.css'
 import { useContext } from 'react';
 import { userContext } from '../../contexts/userContext';
-
 import { useNavigate } from 'react-router-dom';
+
+import styles from './Login.module.css'
 
 import { login } from '../../services/AuthService'
 

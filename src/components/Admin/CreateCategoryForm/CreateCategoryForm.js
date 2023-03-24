@@ -1,6 +1,6 @@
 import styles from './CreateCategoryForm.module.css'
 
-import * as contestService from '../../../services/ContestService';
+import * as contestService from '../../../services/CategoryService';
 
 
 export default function CreateCategoryForm() {

@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
-import Comment from "../Comment/Comment";
-import * as ContestService from '../../services/ContestService';
-import * as PhotoService from '../../services/PhotoService';
-// import * as CommentService from '../../services/CommentService';
 
 import styles from './Details.module.css'
+
+import Comment from "../Comment/Comment";
+
+import * as PhotoService from '../../services/PhotoService';
+import * as LikeService from '../../services/LikeService';
 
 export default function Details() {
 
@@ -23,7 +24,7 @@ export default function Details() {
       .then(result => {
         setCurrentPhoto(result);
       });
-    ContestService.getLikeCount(photoId)
+      LikeService.getLikeCount(photoId)
       .then(result => {
         if (result.code !== 404) {
           setLikeCount(result);
@@ -35,16 +36,14 @@ export default function Details() {
     PhotoService.getPhotoCreator(photoId)
     .then(result => {
       setPhotoCreator(result);
-      console.log(result);
     })
   }, [photoId])
 
 
   const increaseLike = () => {
     setLikeCount(oldValue => oldValue + 1)
-    ContestService.createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
+    LikeService.createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
       .then(result => {
-        console.log(result)
       })
   }
 

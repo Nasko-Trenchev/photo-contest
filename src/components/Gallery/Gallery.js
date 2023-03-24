@@ -1,11 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from './Gallery.module.css';
-import * as ContestService from '../../services/ContestService';
-import * as PhotoService from '../../services/PhotoService';
-
 import { useState, useEffect } from 'react';
+
+import styles from './Gallery.module.css';
+
 import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
 import AllPhotos from '../AllPhotos/AllPhotos';
+
+import * as CategoryService from '../../services/CategoryService';
+import * as PhotoService from '../../services/PhotoService';
+import * as LikeService from '../../services/LikeService';
 
 export default function Gallery() {
 
@@ -17,12 +20,12 @@ export default function Gallery() {
 
   useEffect(() => {
 
-    ContestService.getTopPhotos(categoryId)
+    LikeService.getTopLikedPhotos(categoryId)
       .then(result => {
         setTopPhotos(Object.values(result))
       });
 
-    ContestService.getCategory(categoryId)
+      CategoryService.getCategory(categoryId)
     .then(result => {
       setCategory(result);
     })

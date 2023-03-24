@@ -1,7 +1,7 @@
-import styles from './EditPhoto.module.css'
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+
+import styles from './EditPhoto.module.css'
 
 import * as PhotoService from '../../services/PhotoService'
 

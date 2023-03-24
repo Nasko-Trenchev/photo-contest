@@ -1,6 +1,6 @@
-import styles from './CreatePhoto.module.css'
-
 import { useParams } from 'react-router-dom';
+
+import styles from './CreatePhoto.module.css'
 
 import * as photoService from '../../services/PhotoService';
 

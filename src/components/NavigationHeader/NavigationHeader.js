@@ -1,6 +1,6 @@
-import { userContext } from "../../contexts/userContext";
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
+import { userContext } from "../../contexts/userContext";
 
 import styles from './NavigationHeader.module.css';
 

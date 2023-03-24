@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 import styles from './Main.module.css'
 
-import { useNavigate } from 'react-router-dom';
-
-import * as ContestService from '../../services/ContestService'
+import * as CategoryService from '../../services/CategoryService'
 
 
 export default function Main() {
@@ -12,7 +11,7 @@ export default function Main() {
     const [currenCategories, setCurrentCategories] = useState([]);
 
     useEffect(() => {
-      ContestService.getAllCategories()
+        CategoryService.getAllCategories()
         .then(result => {
             if(result.code !== 404){
                 setCurrentCategories(result);

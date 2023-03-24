@@ -1,8 +1,9 @@
-import styles from "./Register.module.css";
 import { useContext } from "react";
 import { userContext } from "../../contexts/userContext";
 import { useNavigate } from "react-router-dom";
 import {register} from '../../services/AuthService';
+
+import styles from "./Register.module.css";
 
 export default function Register(){
   const navigate = useNavigate();

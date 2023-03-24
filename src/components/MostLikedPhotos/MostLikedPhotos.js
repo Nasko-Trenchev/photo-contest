@@ -1,8 +1,9 @@
-import styles from './MostLikedPhotos.module.css'
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import * as ContestService from '../../services/ContestService';
+import styles from './MostLikedPhotos.module.css'
+
+import * as LikeService from '../../services/LikeService';
 
 export default function MostLikedPhotos({
     data
@@ -11,7 +12,7 @@ export default function MostLikedPhotos({
     const [likeCount, setLikeCount] = useState(0);
 
     useEffect(() =>{
-        ContestService.getLikeCount(data._id)
+        LikeService.getLikeCount(data._id)
         .then(result => {
             if(result.code !== 404){
                 setLikeCount(result);

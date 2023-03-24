@@ -1,10 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
-import * as CommentService from '../../services/CommentService';
 
 import styles from './Comment.module.css'
+
 import EditComment from "./EditComment/EditComment";
+
+import * as CommentService from '../../services/CommentService';
+
 
 export default function Comment() {
 

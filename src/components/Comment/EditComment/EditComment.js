@@ -1,8 +1,8 @@
-import styles from './EditComment.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useContext } from "react";
 import { userContext } from '../../../contexts/userContext';
 
+import styles from './EditComment.module.css';
 
 import * as CommentService from '../../../services/CommentService';
 
