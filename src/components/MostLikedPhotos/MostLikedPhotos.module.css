@@ -39,6 +39,7 @@
 
 .box:nth-child(2){
     order: -1;
+    margin-bottom: 40px;
 }
 
 .box:nth-child(1){
@@ -46,9 +47,7 @@
     margin-top: 10px;
 }
 
-.box:nth-child(3){
-    margin-bottom: 90px;
-}
+
 
 .box img {
     width: 350px;
@@ -79,6 +78,7 @@
 .image-overlay h3 {
     margin-top: 40px;
     line-height: 1.5; 
+    color: wheat;
 }
 .box:hover .image-overlay {
     transform: scale(1.0);

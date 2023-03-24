@@ -11,6 +11,15 @@ export const getAllCategories = async () => {
     return result;
 }
 
+export const getCategory = async (categoryId) => {
+
+    const response = await fetch (`${baseUrl}/${categoryId}`)
+
+    const result = await response.json();
+
+    return result;
+}
+
 export const createPhoto = async (data) => {
 
     const response = await request.post(`http://localhost:3030/data/photos`, data)

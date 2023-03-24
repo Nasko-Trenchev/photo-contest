@@ -26,7 +26,7 @@ export default function CreatePhotos() {
 
     return (
         <>
-            <h1 className={styles["paragraph"]}>Join contest</h1>
+            <h1 className={styles["paragraph"]}>Upload your photo</h1>
             <form className={styles["login-form"]} onSubmit={submitCategory}>
                 <label htmlFor="name">Photo name:</label>
                 <input type="text" id="name" name="name" required />
@@ -36,7 +36,7 @@ export default function CreatePhotos() {
                 <input type="text" id="description" name="description" required />
                 <label htmlFor="price">Photo price:</label>
                 <input type="text" id="price" name="price" required />
-                <button type="submit">Create</button>
+                <button type="submit">Upload</button>
             </form>
         </>
     )
