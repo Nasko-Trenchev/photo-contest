@@ -12,8 +12,9 @@ body {
   height: 100vh;
   margin: 0;
   padding: 0;
-  background-image: url("./images/banner-bg.jpg");
-  background-repeat: no-repeat;
+  background-image: url("./images/scott-webb-UjupleczBOY-unsplash.jpg");
+  background-repeat: repeat;
+  background-size: cover;
 }
 
 h1,
@@ -26,7 +27,7 @@ h6 {
   font-size: 3rem;
   font-weight: 700;
   font-family: "Indie Flower", cursive;
-  color: wheat
+  color: rgba(0, 0, 0, 0.719)
 }
 
 p {
@@ -53,54 +54,6 @@ button:hover,
 input[type="submit"]:hover {
   background-color: #005ea6;
 }
-
-/* Navigation */
-.navbar {
-  background-color: #fff;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-}
-
-.logo {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-}
-
-.navbar__menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.navbar__list {
-  display: flex;
-  margin: 0;
-  padding: 0;
-}
-
-.navbar__item {
-  list-style: none;
-  margin: 0 10px;
-}
-
-.navbar__link {
-  color: #000000;
-  text-decoration: none;
-  font: italic;
-  font-size: 18px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.navbar__link:hover {
-  color: #7b7876;
-}
-
 
 /* Form */
 .register-form {
@@ -270,57 +223,3 @@ img {
   backface-visibility: hidden;
 }
 
-/* Header Styles */
-header {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-}
-
-.logo {
-  max-width: 5%;
-  height: auto;
-  font-size: 2rem;
-  font-weight: 700;
-  color: #333;
-}
-
-nav {
-  display: flex;
-}
-
-nav ul {
-  display: flex;
-  list-style: none;
-}
-
-nav li {
-  margin-left: 1rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  font-size: 1.2rem;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  border-radius: 0.25rem;
-  transition: background-color 0.2s ease;
-}
-
-nav a:hover {
-  background-color: #f2f2f2;
-}
