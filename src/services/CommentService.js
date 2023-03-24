@@ -11,7 +11,9 @@ export const createComment = async (data) => {
 export const getComments = async (photoId) => {
 
     const where = encodeURIComponent(`photoId="${photoId}"`)
+
     const relations = encodeURIComponent(`user=_ownerId:users`)
+    
     const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
 
     return response;

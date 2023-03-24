@@ -13,26 +13,26 @@ export const getAllCategories = async () => {
 
 export const getCategory = async (categoryId) => {
 
-    const response = await fetch (`${baseUrl}/${categoryId}`)
+    const response = await fetch(`${baseUrl}/${categoryId}`)
 
     const result = await response.json();
 
     return result;
 }
 
-export const createPhoto = async (data) => {
+// export const createPhoto = async (data) => {
 
-    const response = await request.post(`http://localhost:3030/data/photos`, data)
+//     const response = await request.post(`http://localhost:3030/data/photos`, data)
 
-    return response;
-}
+//     return response;
+// }
 
-export const editPhoto = async (photoId, data) => {
+// export const editPhoto = async (photoId, data) => {
 
-    const response = await request.put(`http://localhost:3030/data/photos/${photoId}`, data)
+//     const response = await request.put(`http://localhost:3030/data/photos/${photoId}`, data)
 
-    return response;
-}
+//     return response;
+// }
 
 export const createCategory = async (data) => {
 
@@ -41,24 +41,33 @@ export const createCategory = async (data) => {
     return response;
 }
 
-export const getCurrentContestImages = async (categoryId) => {
+// export const getCurrentContestImages = async (categoryId) => {
 
-    const where = encodeURIComponent(`categoryId="${categoryId}"`)
-    try {
-        const response = await request.get(`http://localhost:3030/data/photos?where=${where}`)
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
+//     const where = encodeURIComponent(`categoryId="${categoryId}"`)
+//     try {
+//         const response = await request.get(`http://localhost:3030/data/photos?where=${where}`)
+//         return response;
+//     } catch (error) {
+//         console.log(error);
+//     }
 
-}
+// }
 
-export const getImageDetails = async (id) => {
+// export const getPhotoCreator = async (photoId) => {
 
-    const response = await request.get(`http://localhost:3030/data/photos/${id}`)
+//     const relations = encodeURIComponent(`user=_ownerId:users`)
 
-    return response;
-}
+//     const response = await request.get(`http://localhost:3030/data/photos/${photoId}?load=${relations}`)
+
+//     return response;
+// }
+
+// export const getImageDetails = async (id) => {
+
+//     const response = await request.get(`http://localhost:3030/data/photos/${id}`)
+
+//     return response;
+// }
 
 export const createLike = async (data) => {
 
@@ -105,14 +114,4 @@ export const getTopPhotos = async (categoryId) => {
     } catch (error) {
         console.log(error)
     }
-
-    // const nova = Object.fromEntries(asArray);
-
-    // const keys = Object.values(nova);
-
-    // const justPhotos = keys[0].map(({photo}) => ({photo}))
-    // const values = justPhotos.map(x => Object.values(x)[0])
-    // return finalFinal;
-
-    // const top3 = topPhotos.slice(0, 3);
 }

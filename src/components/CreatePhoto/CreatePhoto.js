@@ -2,7 +2,7 @@ import styles from './CreatePhoto.module.css'
 
 import { useParams } from 'react-router-dom';
 
-import * as contestService from '../../services/ContestService';
+import * as photoService from '../../services/PhotoService';
 
 
 export default function CreatePhotos() {
@@ -18,7 +18,7 @@ export default function CreatePhotos() {
             price
         } = Object.fromEntries(new FormData(e.target));
 
-        contestService.createPhoto({categoryId, name, imageUrl, description, price})
+        photoService.createPhoto({categoryId, name, imageUrl, description, price})
             .then(data => {
                 console.log(data);
             })

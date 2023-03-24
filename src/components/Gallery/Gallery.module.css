@@ -91,16 +91,9 @@ h3 {
 }
 
 .createButton {
-    /* margin-left: auto;
-   color: rgb(255, 255, 255);
-   background-color: rgba(62, 61, 61, 0.507);
-   border-radius: 30px;
-   font-family: 'Roboto', sans-serif;
-   font-weight: 500; */
-
     min-width: 300px;
     min-height: 50px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 22px;
     text-transform: uppercase;
     letter-spacing: 1.3px;
@@ -121,61 +114,62 @@ h3 {
 
 }
 
-/* .createButton:hover {
-    color: rgb(0, 0, 0);
-    background-color: rgba(62, 61, 61, 0.262);
-} */
 .createButton::before {
-content: '';
-  border-radius: 1000px;
-  min-width: calc(300px + 12px);
-  min-height: calc(60px + 12px);
-  border: 6px solid #95bab3;
-  box-shadow: 0 0 60px rgba(154, 193, 185, 0.64);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  transition: all .3s ease-in-out 0s;
+    content: '';
+    border-radius: 1000px;
+    min-width: calc(300px + 12px);
+    min-height: calc(60px + 12px);
+    border: 6px solid #95bab3;
+    box-shadow: 0 0 60px rgba(154, 193, 185, 0.64);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
 }
 
-.createButton:hover, .button:focus {
-  color: #313133;
-  transform: translateY(-6px);
+.createButton:hover,
+.button:focus {
+    color: #313133;
+    transform: translateY(-6px);
 }
 
-.createButton:hover::before, button:focus::before {
-  opacity: 1;
+.createButton:hover::before,
+button:focus::before {
+    opacity: 1;
 }
 
 .createButton::after {
-  content: '';
-  width: 30px; height: 30px;
-  border-radius: 100%;
-  border: 6px solid #99aeaa;
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: ring 1.5s infinite;
+    content: '';
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    border: 6px solid #99aeaa;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
 }
 
-.createButton:hover::after, button:focus::after {
-  animation: none;
-  display: none;
+.createButton:hover::after,
+button:focus::after {
+    animation: none;
+    display: none;
 }
 
 @keyframes ring {
-  0% {
-    width: 30px;
-    height: 30px;
-    opacity: 1;
-  }
-  100% {
-    width: 300px;
-    height: 300px;
-    opacity: 0;
-  }
+    0% {
+        width: 30px;
+        height: 30px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
 }

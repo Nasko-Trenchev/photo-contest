@@ -3,7 +3,7 @@ import styles from './EditPhoto.module.css'
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import * as ContestServie from '../../services/ContestService'
+import * as PhotoService from '../../services/PhotoService'
 
 export default function EditPhoto() {
     const [currentPhoto, setCurrentPhoto] = useState({})
@@ -16,7 +16,7 @@ export default function EditPhoto() {
     const { photoId, categoryId } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        ContestServie.getImageDetails(photoId)
+        PhotoService.getImageDetails(photoId)
             .then(result => {
                 setCurrentPhoto(result);
             })
@@ -31,7 +31,7 @@ export default function EditPhoto() {
 
     const submitChange = (e) => {
         e.preventDefault();
-        ContestServie.editPhoto(photoId, { categoryId, ...currentInput })
+        PhotoService.editPhoto(photoId, { categoryId, ...currentInput })
             .then(result => {
             });
 

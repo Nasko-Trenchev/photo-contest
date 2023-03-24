@@ -4,17 +4,17 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  margin-top: 50px;
 }
 
 .photo-container {
-  max-width: 600px;
-  margin-bottom: 1rem;
+  max-width: 500px;
+  max-height: 450px;
 }
 
 .photo {
-  width: 100%;
-  height: auto;
+  width: 450px;
+  height: 350px;
+  border-radius: 10px;
 }
 
 .details-container {
@@ -61,6 +61,7 @@
 	-webkit-transition: .3s ease-in-out;
 	transition: .3s ease-in-out;
   border-radius: 20px;
+  margin-left: 75px;
 }
 
 .like-section img:hover {

@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './Gallery.module.css';
 import * as ContestService from '../../services/ContestService';
+import * as PhotoService from '../../services/PhotoService';
 
 import { useState, useEffect } from 'react';
 import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
@@ -28,7 +29,7 @@ export default function Gallery() {
   }, [categoryId])
 
   useEffect(() => {
-    ContestService.getCurrentContestImages(categoryId)
+    PhotoService.getCurrentContestImages(categoryId)
       .then(result => {
         setAllPhotos(result);
       })
@@ -49,7 +50,7 @@ export default function Gallery() {
       <section>
         {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
       </section>
-      <button onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
+      <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
 
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
