@@ -12,9 +12,6 @@ export default function Admin() {
       <div>
         <button onClick={() => handleOption("createCategory")}>Create category</button>
       </div>
-      <div>
-        <button onClick={() => handleOption("createContest")}>Create photo</button>
-      </div>
     </main>
   )
 }

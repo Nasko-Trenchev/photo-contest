@@ -6,7 +6,7 @@ import { userContext } from '../../../contexts/userContext';
 
 import * as CommentService from '../../../services/CommentService';
 
-export default function EditComment({}){
+export default function EditComment(){
 
     const {commentId, photoId} = useParams();
     const { user } = useContext(userContext);

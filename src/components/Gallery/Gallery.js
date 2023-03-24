@@ -4,6 +4,7 @@ import * as ContestService from '../../services/ContestService';
 
 import { useState, useEffect } from 'react';
 import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
+import AllPhotos from '../AllPhotos/AllPhotos';
 
 export default function Gallery() {
 
@@ -48,7 +49,7 @@ console.log(topPhotos);
 
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y=> y._id === x._id) 
-        ? null : <MostLikedPhotos key={x._id} data={x}/>))}
+        ? null : <AllPhotos key={x._id} data={x}/>))}
       </section>
     </main>
   )

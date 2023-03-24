@@ -13,8 +13,8 @@ import Logout from "./components/Logout/Logout";
 import {useLocalStorage} from './hooks/useLocalStorage';
 import CreateCategoryForm from './components/Admin/CreateCategoryForm/CreateCategoryForm'
 import Admin from "./components/Admin/Admin";
-import CreateContest from "./components/Admin/Photos/Photos";
-import Photos from "./components/Admin/Photos/Photos";
+import CreateContest from "./components/CreatePhoto/CreatePhoto";
+import Photos from "./components/CreatePhoto/CreatePhoto";
 import EditPhoto from "./components/EditPhoto/EditPhoto";
 import EditComment from "./components/Comment/EditComment/EditComment";
 
@@ -45,7 +45,6 @@ function App() {
       <Route path="/photos/:photoId" element={<Details/>}/>
       <Route path="/edit/:categoryId/:photoId" element={<EditPhoto/>}/>
       <Route path="/comments/:photoId/:commentId/edit" element={<EditComment/>}/>
-      <Route path="/createContest" element={<CreateContest/>}/>
       <Route path="/admin" element={<Admin/>}/>
     </Routes>
     <Footer/>

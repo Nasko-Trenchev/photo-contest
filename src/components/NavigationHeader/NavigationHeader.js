@@ -12,7 +12,7 @@ export default function NavigationHeader(){
         <header>
         <nav className={styles["navbar__menu"]}>
           <div className={styles["logo"]}>
-          <img src="asd" alt="Photo"/>
+          <img src="asd" alt="Phosto"/>
           </div>
         <ul className={styles["navbar__list"]}>
           {user.accessToken ?

@@ -38,7 +38,7 @@ export default function Main() {
                     <img src={category.imageUrl} alt="Photos" />
                     <div className={styles["image-overlay"]}>
                         <h2>{category.name}</h2>
-                        <p>Prize: {category.prize}</p>
+                        <p>Prize: {category.prize}$</p>
                         <button onClick={()=>handleOption(category._id)}>View category</button>
                     </div>
                 </div>) : <h2>There aren`t any categories yet</h2>}

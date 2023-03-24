@@ -1,11 +1,11 @@
-import styles from './Photos.module.css'
+import styles from './CreatePhoto.module.css'
 
 import { useParams } from 'react-router-dom';
 
-import * as contestService from '../../../services/ContestService';
+import * as contestService from '../../services/ContestService';
 
 
-export default function Photos() {
+export default function CreatePhotos() {
 
     const {categoryId} = useParams();
     const submitCategory = (e) => {
