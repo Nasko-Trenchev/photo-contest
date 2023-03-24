@@ -20,7 +20,7 @@ export default function EditPhoto() {
             .then(result => {
                 setCurrentPhoto(result);
             })
-    }, [])
+    }, [photoId])
 
     const handleChange = (e) => {
         setCurrentInput({

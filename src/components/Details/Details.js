@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { userContext } from "../../contexts/userContext";
+import Comment from "../Comment/Comment";
 import * as ContestService from '../../services/ContestService';
-import * as CommentService from '../../services/CommentService';
+// import * as CommentService from '../../services/CommentService';
 
 import styles from './Details.module.css'
 
@@ -10,8 +11,8 @@ export default function Details() {
 
   const [currentPhoto, setCurrentPhoto] = useState({});
   const [likeCount, setLikeCount] = useState(0);
-  const [comments, setComments] = useState([]);
-  const [currentComment, setCurrentComment] = useState('');
+  // const [comments, setComments] = useState([]);
+  // const [currentComment, setCurrentComment] = useState('');
 
   const { photoId } = useParams();
   const { user } = useContext(userContext);
@@ -24,18 +25,18 @@ export default function Details() {
       });
     ContestService.getLikeCount(photoId)
       .then(result => {
-        if(result.code !== 404) {
+        if (result.code !== 404) {
           setLikeCount(result);
         }
       });
   }, [photoId])
 
-  useEffect(() => {
-    CommentService.getComments(photoId)
-      .then(result => {
-        setComments(result);
-      })
-  }, [photoId])
+  // useEffect(() => {
+  //   CommentService.getComments(photoId)
+  //     .then(result => {
+  //       setComments(result);
+  //     })
+  // }, [photoId])
 
 
   const increaseLike = () => {
@@ -46,15 +47,14 @@ export default function Details() {
       })
   }
 
-  const createComment = (e) => {
-    e.preventDefault();
-    CommentService.createComment({ photoId: photoId, user: user, comment: currentComment })
-      .then(result => {
-        setComments(oldstate => [...oldstate, result]);
-        setCurrentComment('');
-      })
-      
-  }
+  // const createComment = (e) => {
+  //   e.preventDefault();
+  //   CommentService.createComment({ photoId: photoId, user: user, comment: currentComment })
+  //     .then(result => {
+  //       setComments(oldstate => [...oldstate, result]);
+  //       setCurrentComment('');
+  //     })
+  // }
 
   return (
     <main className={styles["details-page"]}>
@@ -72,33 +72,33 @@ export default function Details() {
               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png" alt="Pshoto"
                 onClick={() => test(currentPhoto.categoryId)} />
             </> : <>
-              <button onClick={()=> navigate(`/edit/${currentPhoto.categoryId}/${currentPhoto._id}`)}>Edit</button>
-              <button>Delete</button>
+              <button onClick={() => navigate(`/edit/${currentPhoto.categoryId}/${currentPhoto._id}`)}>Edit</button>
             </>}
         </div>
-        <div className={styles["comment-section"]}>
+        <Comment/>
+        {/* <div className={styles["comment-section"]}>
           <h2 className={styles["comment-heading"]}>Comments</h2>
           <ul className={styles["comment-list"]}>
             {comments.length > 0 ? (comments.map(x =>
               <li key={x._id} className={styles["comment"]}>
                 <span className={styles["comment-author"]}>{x.user.username}:</span> {x.comment}
-              </li>)) : <p>There are no comments for this picture. Be the first to post!</p>}
+              </li>)) : <p>There are no comments for this picture. Be the first to post!</p>} */}
             {/* <li className={styles["comment"]}>
               <span className={styles["comment-author"]}>John Doe:</span> This is a great product!
             </li>
             <li className={styles["comment"]}>
               <span className={styles["comment-author"]}>Jane Smith:</span> I love this product!
             </li> */}
-          </ul>
+          {/* </ul>
           <form className={styles["comment-form"]} onSubmit={createComment}>
             <label htmlFor="comment" className={styles["comment-label"]}>Leave a Comment:</label>
             <textarea id="comment" name="comment" className={styles["comment-input"]}
               value={currentComment}
               onChange={(e) => setCurrentComment(e.target.value)} required>
-             </textarea>
+            </textarea>
             <button type="submit" className={styles["comment-button"]}>Post Comment</button>
           </form>
-        </div>
+        </div> */}
       </div>
     </main>
   )

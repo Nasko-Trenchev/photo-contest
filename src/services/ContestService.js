@@ -34,7 +34,6 @@ export const createCategory = async (data) => {
 
 export const getCurrentContestImages = async (categoryId) => {
 
-    // const relations = encodeURIComponent(`photos=categoryId:photos`)
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
     try {
         const response = await request.get(`http://localhost:3030/data/photos?where=${where}`)

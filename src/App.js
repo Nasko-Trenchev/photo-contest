@@ -16,6 +16,7 @@ import Admin from "./components/Admin/Admin";
 import CreateContest from "./components/Admin/Photos/Photos";
 import Photos from "./components/Admin/Photos/Photos";
 import EditPhoto from "./components/EditPhoto/EditPhoto";
+import EditComment from "./components/Comment/EditComment/EditComment";
 
 function App() {
   const [user, setUser] = useLocalStorage("user", {});
@@ -43,6 +44,7 @@ function App() {
       <Route path="/categories/:categoryId/createPhoto" element={<Photos/>}/>
       <Route path="/photos/:photoId" element={<Details/>}/>
       <Route path="/edit/:categoryId/:photoId" element={<EditPhoto/>}/>
+      <Route path="/comments/:photoId/:commentId/edit" element={<EditComment/>}/>
       <Route path="/createContest" element={<CreateContest/>}/>
       <Route path="/admin" element={<Admin/>}/>
     </Routes>
