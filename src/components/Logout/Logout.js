@@ -15,8 +15,7 @@ export default function Logout()
             userLogoutHandler();
             navigate("/");
     })
-    }, [])
-
+    }, [user.accessToken, userLogoutHandler, navigate])
 
     return null;
 }

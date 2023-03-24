@@ -21,6 +21,10 @@ function Login() {
     login(email, password)
       .then(authData => {
         userLoginHandler(authData);
+
+        if(authData.code === 403) {
+          throw new Error(authData.message)
+        }
         navigate('/');
       });
   }
