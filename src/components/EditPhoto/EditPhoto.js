@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import styles from './EditPhoto.module.css'
 
-import * as PhotoService from '../../services/PhotoService'
+import {getImageDetails, editPhoto} from '../../services/PhotoService'
 
 export default function EditPhoto() {
     const [currentPhoto, setCurrentPhoto] = useState({})
@@ -16,7 +16,7 @@ export default function EditPhoto() {
     const { photoId, categoryId } = useParams();
     const navigate = useNavigate();
     useEffect(() => {
-        PhotoService.getImageDetails(photoId)
+        getImageDetails(photoId)
             .then(result => {
                 setCurrentPhoto(result);
             })
@@ -31,8 +31,8 @@ export default function EditPhoto() {
 
     const submitChange = (e) => {
         e.preventDefault();
-        PhotoService.editPhoto(photoId, { categoryId, ...currentInput })
-            .then(result => {
+        editPhoto(photoId, { categoryId, ...currentInput })
+            .then(() => {
             });
 
         navigate(`/photos/${photoId}`)

@@ -1,14 +1,16 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import styles from './CreatePhoto.module.css'
 
-import * as photoService from '../../services/PhotoService';
+import { createPhoto } from '../../services/PhotoService';
 
 
 export default function CreatePhotos() {
 
-    const {categoryId} = useParams();
-    const submitCategory = (e) => {
+    const { categoryId } = useParams();
+    const navigate = useNavigate();
+
+    const submitCategory = e => {
         e.preventDefault();
 
         const {
@@ -18,9 +20,9 @@ export default function CreatePhotos() {
             price
         } = Object.fromEntries(new FormData(e.target));
 
-        photoService.createPhoto({categoryId, name, imageUrl, description, price})
-            .then(data => {
-                console.log(data);
+        createPhoto({ categoryId, name, imageUrl, description, price })
+            .then(() => {
+                navigate(`/categories/${categoryId}`)
             })
     }
 

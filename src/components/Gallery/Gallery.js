@@ -6,9 +6,9 @@ import styles from './Gallery.module.css';
 import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
 import AllPhotos from '../AllPhotos/AllPhotos';
 
-import * as CategoryService from '../../services/CategoryService';
-import * as PhotoService from '../../services/PhotoService';
-import * as LikeService from '../../services/LikeService';
+import { getCategory } from '../../services/CategoryService';
+import { getCurrentContestImages } from '../../services/PhotoService';
+import { getTopLikedPhotos } from '../../services/LikeService';
 
 export default function Gallery() {
 
@@ -20,36 +20,33 @@ export default function Gallery() {
 
   useEffect(() => {
 
-    LikeService.getTopLikedPhotos(categoryId)
+    getTopLikedPhotos(categoryId)
       .then(result => {
         setTopPhotos(Object.values(result))
       });
 
-      CategoryService.getCategory(categoryId)
-    .then(result => {
-      setCategory(result);
-    })
+    getCategory(categoryId)
+      .then(result => {
+        setCategory(result);
+      })
   }, [categoryId])
 
   useEffect(() => {
-    PhotoService.getCurrentContestImages(categoryId)
+    getCurrentContestImages(categoryId)
       .then(result => {
         setAllPhotos(result);
       })
   }, [categoryId])
   const navigate = useNavigate();
 
-  const handleOption = (Id) => {
-    navigate(`/categories/${Id}/createPhoto`);
+  const handleOption = (id) => {
+    navigate(`/categories/${id}/createPhoto`);
   };
-
-  console.log(topPhotos);
 
   return (
     <main className={styles['gallery']} >
       <button className={styles['createButton']} onClick={() => handleOption(categoryId)}>Join {category.name} contest</button>
-      
-      <h2>The three most liked photos:</h2>
+      <h2>The most liked photos:</h2>
       <section>
         {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
       </section>

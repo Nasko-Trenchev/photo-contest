@@ -30,8 +30,8 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    width: 350px;
-    height: 250px;
+    width: 420px;
+    height: 320px;
     margin-top: 10px;
     transition: transform 0.2s ease-in-out;
 
@@ -50,8 +50,8 @@
 
 
 .box img {
-    width: 350px;
-    height: 250px;
+    width: 420px;
+    height: 320px;
     border-radius: 30px;
   }
 

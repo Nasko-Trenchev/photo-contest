@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 import styles from './MostLikedPhotos.module.css'
 
-import * as LikeService from '../../services/LikeService';
+import {getLikeCount} from '../../services/LikeService';
 
 export default function MostLikedPhotos({
     data
@@ -12,7 +12,7 @@ export default function MostLikedPhotos({
     const [likeCount, setLikeCount] = useState(0);
 
     useEffect(() =>{
-        LikeService.getLikeCount(data._id)
+        getLikeCount(data._id)
         .then(result => {
             if(result.code !== 404){
                 setLikeCount(result);
@@ -31,7 +31,6 @@ export default function MostLikedPhotos({
             <img src={data.imageUrl} alt="Rank 1" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
-                {/* <p>Uploaded by:</p> */}
                 {likeCount && <p>Current likes {likeCount}</p>}
                 <button onClick={()=>handleOption(data._id)}>See details</button>
             </div>

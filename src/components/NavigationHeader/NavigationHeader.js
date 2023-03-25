@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
-import { userContext } from "../../contexts/userContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import styles from './NavigationHeader.module.css';
 
 export default function NavigationHeader(){
 
-  const {user} = useContext(userContext);
+  const {user} = useContext(UserContext);
 
     return (
         <header>

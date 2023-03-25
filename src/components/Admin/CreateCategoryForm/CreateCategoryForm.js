@@ -1,11 +1,15 @@
+import { useNavigate } from 'react-router-dom';
+
 import styles from './CreateCategoryForm.module.css'
 
-import * as contestService from '../../../services/CategoryService';
+import {createCategory} from '../../../services/CategoryService';
 
 
 export default function CreateCategoryForm() {
 
-const createContest = (e) => {
+  const navigate = useNavigate();
+
+  const createContest = (e) => {
     e.preventDefault();
 
     const {
@@ -14,24 +18,24 @@ const createContest = (e) => {
       prize
     } = Object.fromEntries(new FormData(e.target));
 
-    contestService.createCategory({imageUrl, name ,prize})
-    .then(data=> {
-      console.log(data);
-    })
-}
+    createCategory({ imageUrl, name, prize })
+      .then(() => {
+        navigate('/');
+      })
+  }
 
-    return (
-        <>
-        <h1 className={styles["paragraph"]}>Create Category</h1>
-        <form className={styles["login-form"]} onSubmit={createContest}>
-          <label htmlFor="imageUrl">ImageUrl:</label>
-          <input type="text" id="imageUrl" name="imageUrl" required />
-          <label htmlFor="name">Category name:</label>
-          <input type="text" id="name" name="name" required />
-          <label htmlFor="prize">Category prize</label>
-          <input type="text" id="prize" name="prize" required />
-          <button type="submit">Create</button>
-        </form>
-        </>
-    )
+  return (
+    <>
+      <h1 className={styles["paragraph"]}>Create Category</h1>
+      <form className={styles["login-form"]} onSubmit={createContest}>
+        <label htmlFor="imageUrl">ImageUrl:</label>
+        <input type="text" id="imageUrl" name="imageUrl" required />
+        <label htmlFor="name">Category name:</label>
+        <input type="text" id="name" name="name" required />
+        <label htmlFor="prize">Category prize</label>
+        <input type="text" id="prize" name="prize" required />
+        <button type="submit">Create</button>
+      </form>
+    </>
+  )
 }

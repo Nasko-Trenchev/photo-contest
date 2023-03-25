@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { userContext } from "../../contexts/userContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import styles from './Comment.module.css'
 
@@ -17,7 +17,7 @@ export default function Comment() {
 
   const { photoId } = useParams();
   const navigate = useNavigate();
-  const { user } = useContext(userContext);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     CommentService.getComments(photoId)
@@ -37,7 +37,7 @@ export default function Comment() {
 
   const deleteComment = (id) => {
     CommentService.deleteComment(id)
-      .then(result => {
+      .then(() => {
         setComments(oldState => oldState.filter(x => x._id !== id));
         setShowEdit(false);
       })

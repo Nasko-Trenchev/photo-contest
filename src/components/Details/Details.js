@@ -1,13 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { userContext } from "../../contexts/userContext";
+import { UserContext } from "../../contexts/UserContext";
 
 import styles from './Details.module.css'
 
 import Comment from "../Comment/Comment";
 
-import * as PhotoService from '../../services/PhotoService';
-import * as LikeService from '../../services/LikeService';
+import {getImageDetails, getPhotoCreator} from '../../services/PhotoService';
+import {getLikeCount, createLike} from '../../services/LikeService';
 
 export default function Details() {
 
@@ -16,15 +16,15 @@ export default function Details() {
   const [photoCreator, setPhotoCreator] = useState({});
 
   const { photoId } = useParams();
-  const { user } = useContext(userContext);
+  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    PhotoService.getImageDetails(photoId)
+    getImageDetails(photoId)
       .then(result => {
         setCurrentPhoto(result);
       });
-      LikeService.getLikeCount(photoId)
+    getLikeCount(photoId)
       .then(result => {
         if (result.code !== 404) {
           setLikeCount(result);
@@ -32,18 +32,18 @@ export default function Details() {
       });
   }, [photoId])
 
-  useEffect(() =>{
-    PhotoService.getPhotoCreator(photoId)
-    .then(result => {
-      setPhotoCreator(result);
-    })
+  useEffect(() => {
+    getPhotoCreator(photoId)
+      .then(result => {
+        setPhotoCreator(result);
+      })
   }, [photoId])
 
 
   const increaseLike = () => {
     setLikeCount(oldValue => oldValue + 1)
-    LikeService.createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
-      .then(result => {
+    createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
+      .then(()=> {
       })
   }
 
@@ -66,7 +66,7 @@ export default function Details() {
               <button className={styles["editButton"]} onClick={() => navigate(`/edit/${currentPhoto.categoryId}/${currentPhoto._id}`)}>Edit</button>
             </>}
         </div>
-        <Comment/>
+        <Comment />
       </div>
     </main>
   )

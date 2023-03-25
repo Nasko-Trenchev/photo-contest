@@ -1,15 +1,15 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useContext } from "react";
-import { userContext } from '../../../contexts/userContext';
+import { UserContext } from '../../../contexts/UserContext';
 
 import styles from './EditComment.module.css';
 
-import * as CommentService from '../../../services/CommentService';
+import {editComment} from '../../../services/CommentService';
 
 export default function EditComment(){
 
     const {commentId, photoId} = useParams();
-    const { user } = useContext(userContext);
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     const onEditSubmit = (e) => {
@@ -18,8 +18,8 @@ export default function EditComment(){
             comment,
           } = Object.fromEntries(new FormData(e.target));
       
-        CommentService.editComment(commentId, {photoId: photoId, user: user, comment: comment})
-        .then(result => {
+        editComment(commentId, {photoId: photoId, user: user, comment: comment})
+        .then(() => {
            navigate(`/photos/${photoId}`)
         })
     }

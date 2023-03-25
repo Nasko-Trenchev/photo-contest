@@ -6,6 +6,10 @@ export const getAllCategories = async () => {
 
     const response = await fetch(baseUrl)
 
+    if (!response?.ok) {
+        return Promise.reject('Categories Service Error')
+    }
+
     const result = await response.json();
 
     return result;

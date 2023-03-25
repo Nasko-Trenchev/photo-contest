@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { userContext } from '../../contexts/userContext';
+import { UserContext } from '../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Login.module.css'
@@ -7,7 +7,7 @@ import styles from './Login.module.css'
 import { login } from '../../services/AuthService'
 
 function Login() {
-  const {userLoginHandler} = useContext(userContext)
+  const {userLoginHandler} = useContext(UserContext)
   const navigate = useNavigate();
   
   const onLoginSubmit = (e) => {
