@@ -18,7 +18,6 @@ import EditComment from "./components/Comment/EditComment/EditComment";
 import RouteGuard from "./components/Common/RouteGuard";
 
 function App() {
-  
   const [user, setUser] = useLocalStorage("user", {});
 
   const userLoginHandler = (userData) => {
@@ -28,6 +27,7 @@ function App() {
   const userLogoutHandler = () => {
     setUser({});
   }
+
   return (
     <UserContext.Provider value={{ user, userLoginHandler, userLogoutHandler, isAuthenticated: !!user.accessToken }}>
       <NavigationHeader />

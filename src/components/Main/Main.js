@@ -7,12 +7,12 @@ import { getAllCategories } from '../../services/CategoryService'
 
 export default function Main() {
 
-    const [currenCategories, setCurrentCategories] = useState([]);
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         getAllCategories()
             .then(result => {
-                setCurrentCategories(result || []);
+                setCategories(result || []);
             })
             .catch((err) => {
                 console.log(err)
@@ -29,10 +29,10 @@ export default function Main() {
         <main className={styles['gallery']}>
             <h1>Welcome to the photo contest!</h1>
 
-            {currenCategories.length !== 0 && <h2>Select category to participate in:</h2>}
+            {categories.length !== 0 && <h2>Select category to participate in:</h2>}
 
             <section>
-                {currenCategories.map(category =>
+                {categories.map(category =>
                     <div key={category._id} className={styles["box"]}>
                         <img src={category.imageUrl} alt="category" />
                         <div className={styles["image-overlay"]}>
@@ -41,7 +41,7 @@ export default function Main() {
                             <button onClick={() => handleOption(category._id)}>View category</button>
                         </div>
                     </div>)}
-                    {currenCategories.length === 0 && <h2>There aren`t any categories, yet</h2>}
+                    {categories.length === 0 && <h2>There aren`t any categories, yet</h2>}
             </section>
         </main>
     )
