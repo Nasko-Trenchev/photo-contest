@@ -9,11 +9,11 @@ import styles from './Login.module.css'
 import { login } from '../../services/AuthService'
 
 function Login() {
-
   const [formInput, setformInput] = useState({
     email: '',
     password: '',
-  })
+  });
+  
   const { userLoginHandler } = useContext(UserContext)
   const { setAlertState } = useContext(AlertContext)
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ function Login() {
             email: '',
             password: '',
           })
+
           return;
         }
         userLoginHandler(authData)
@@ -50,7 +51,7 @@ function Login() {
       <h1 className={styles["paragraph"]}>Login</h1>
       <form className={styles["login-form"]} onSubmit={onFormSubmit}>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={formInput.email} onChange={onUserInput} />
+        <input type="text" id="email" name="email" value={formInput.email} onChange={onUserInput} />
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" value={formInput.password} onChange={onUserInput} />
         <button type="submit">Log in</button>

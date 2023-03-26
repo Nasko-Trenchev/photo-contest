@@ -9,13 +9,13 @@ const Alert = () => {
     useEffect(() => {
         const id = setTimeout(() => {
           setAlertState({show: false, message: ''})  
-        }, 4000)
+        }, 100000)
         return () => clearTimeout(id)
     }, [alertState, setAlertState])
    
     return (
         alertState.show && <div onClick={() => setAlertState({ show: false, message: '' })} className={styles["alert"]}>
-        {alertState.message}
+        <p>{alertState.message}</p>
     </div>
     )
 }

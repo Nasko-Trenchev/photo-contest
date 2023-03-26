@@ -39,8 +39,10 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
+      
       return;
     }
+
     if (formInput.password !== formInput.confirmPassword) {
       setAlertState({ message: 'Passwords do not match!', show: true })
       setformInput({
@@ -49,8 +51,10 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
+
       return;
     }
+
     if (formInput.password.length < 6) {
       setAlertState({ message: 'Password should be at least 6 charachters', show: true })
       setformInput({
@@ -59,8 +63,10 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
+
       return;
     }
+
     if (formInput.username.length < 3) {
       setAlertState({ message: 'Username should be at least 3 characters', show: true })
       setformInput({
@@ -69,6 +75,7 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
+
       return;
     }
     register(formInput.email, formInput.password, formInput.username)

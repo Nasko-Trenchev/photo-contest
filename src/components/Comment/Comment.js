@@ -40,7 +40,6 @@ export default function Comment() {
   }
 
   return (
-
     <div className={styles["comment-section"]}>
       <h2 className={styles["comment-heading"]}>Comments</h2>
       <ul className={styles["comment-list"]}>
