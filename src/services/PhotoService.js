@@ -42,3 +42,10 @@ export const getImageDetails = async (id) => {
     
     return response;
 }
+
+export const getAllPhotos = async () => {
+    
+    const response = await request.get(`${baseUrl}`)
+
+    return response;
+}

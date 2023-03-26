@@ -28,3 +28,10 @@ export const editComment = async (commentId, data ) => {
 
     return response;
 }
+
+export const getAllComments = async () => {
+    
+    const response = await request.get(`${baseUrl}`);
+
+    return response;
+}

@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { UserContext } from "./contexts/UserContext";
-import { useLocalStorage } from './hooks/useLocalStorage';
+import { UserProvider } from "./contexts/UserContext";
 
 import NavigationHeader from "./components/NavigationHeader/NavigationHeader";
 import Login from './components/Login/Login';
@@ -16,20 +15,12 @@ import Photos from "./components/CreatePhoto/CreatePhoto";
 import EditPhoto from "./components/EditPhoto/EditPhoto";
 import EditComment from "./components/Comment/EditComment/EditComment";
 import RouteGuard from "./components/Common/RouteGuard";
+import Profile from "./components/Profile/Profile";
 
 function App() {
-  const [user, setUser] = useLocalStorage("user", {});
-
-  const userLoginHandler = (userData) => {
-    setUser(userData)
-  }
-
-  const userLogoutHandler = () => {
-    setUser({});
-  }
 
   return (
-    <UserContext.Provider value={{ user, userLoginHandler, userLogoutHandler, isAuthenticated: Boolean(user.accessToken)}}>
+    <UserProvider>
       <NavigationHeader />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -40,6 +31,7 @@ function App() {
         <Route path="/photos/:photoId" element={<Details />} />
         <Route
           element={<RouteGuard />}>
+          <Route path="/profile" element={<Profile/>} />
           <Route path="/categories/:categoryId/createPhoto" element={<Photos />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/edit/:categoryId/:photoId" element={<EditPhoto />} />
@@ -49,7 +41,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
-    </UserContext.Provider>
+      </UserProvider>
   );
 }
 
