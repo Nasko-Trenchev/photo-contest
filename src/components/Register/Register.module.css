@@ -1,7 +1,17 @@
 /* Register Page Styles */
 
-.paragraph {
-  margin-top: 4rem;
+.heading {
+  margin-top: 3.5rem;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.secondHeading {
+  margin-top: 1.5rem;
+  color: black;
+  font-size: 24px;
+  font-weight: bold;
   text-align: center;
 }
 .register-form {

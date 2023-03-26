@@ -17,6 +17,13 @@ export const getLikeCount = async (photoId) => {
     
 }
 
+export const getAllLikes = async () => {
+
+    const response = await request.get(`${baseUrl}`);
+    
+    return response;
+}
+
 export const getTopLikedPhotos = async (categoryId) => {
     const relations = encodeURIComponent(`photo=photoId:photos`)
     const where = encodeURIComponent(`categoryId="${categoryId}"`)

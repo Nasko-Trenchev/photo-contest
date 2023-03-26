@@ -15,7 +15,7 @@ export default function Gallery() {
   const [topPhotos, setTopPhotos] = useState([]);
   const [allPhotos, setAllPhotos] = useState([]);
   const [category, setCategory] = useState({});
-  const [showPhotos, setShowPhotos] = useState(false);
+  const [showPhotos, setShowPhotos] = useState(true);
   const { categoryId } = useParams();
 
   useEffect(() => {
@@ -46,12 +46,22 @@ export default function Gallery() {
   return (
     <main className={styles['gallery']} >
       <button className={styles['createButton']} onClick={() => handleOption(categoryId)}>Join {category.name} contest</button>
-      <h2>The most liked photos:</h2>
-      <section>
-        {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
-      </section>
-      <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
-
+      {topPhotos.length > 0 &&
+        <>
+          <h2>The most liked photos:</h2>
+          <section>
+            {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
+          </section>
+          {allPhotos.length > topPhotos.length &&
+            <div>
+              <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
+            </div>
+          }
+        </>
+      }
+      {/* <div>
+        <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
+      </div> */}
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
           ? null : <AllPhotos key={x._id} data={x} />))}

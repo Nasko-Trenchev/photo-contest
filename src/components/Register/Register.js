@@ -36,8 +36,8 @@ export default function Register() {
   }
   return (
     <>
-      <h1 className={styles["paragraph"]}>Register</h1>
-      <p className={styles["paragraph"]}>Create a new account to submit your photos.</p>
+      <h1 className={styles["heading"]}>Register</h1>
+      <h2 className={styles["secondHeading"]}>Create new account to submit your photos</h2>
       <form className={styles["register-form"]} onSubmit={onRegisterSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
@@ -45,7 +45,7 @@ export default function Register() {
         </div>
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input type="username" id="username" name="username" required />
+          <input type="text" id="username" name="username" required />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
