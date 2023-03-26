@@ -16,11 +16,10 @@ export default function CreatePhotos() {
         const {
             name,
             imageUrl,
-            description,
-            price
+            description,            
         } = Object.fromEntries(new FormData(e.target));
 
-        createPhoto({ categoryId, name, imageUrl, description, price })
+        createPhoto({ categoryId, name, imageUrl, description })
             .then(() => {
                 navigate(`/categories/${categoryId}`)
             })
@@ -36,8 +35,6 @@ export default function CreatePhotos() {
                 <input type="text" id="imageUrl" name="imageUrl" required />
                 <label htmlFor="description">Photo description:</label>
                 <input type="text" id="description" name="description" required />
-                <label htmlFor="price">Photo price:</label>
-                <input type="text" id="price" name="price" required />
                 <button type="submit">Upload</button>
             </form>
         </>

@@ -31,7 +31,7 @@ function App() {
         <Route path="/photos/:photoId" element={<Details />} />
         <Route
           element={<RouteGuard />}>
-          <Route path="/profile" element={<Profile/>} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/categories/:categoryId/createPhoto" element={<Photos />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/edit/:categoryId/:photoId" element={<EditPhoto />} />
@@ -41,7 +41,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
-      </UserProvider>
+    </UserProvider>
   );
 }
 
