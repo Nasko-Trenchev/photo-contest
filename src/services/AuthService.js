@@ -5,29 +5,24 @@ const baseUrl = "http://localhost:3030/users"
 
 export const login = (email, password) => {
 
-    try {
-        const response = request.post(`${baseUrl}/login`, {email, password})
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
+    const response = request.post(`${baseUrl}/login`, { email, password })
+    return response;
+
 }
 
-export const register = (email, password, username) => request.post(`${baseUrl}/register`, {email , password, username});
+export const register = (email, password, username) => {
+    const response = request.post(`${baseUrl}/register`, { email, password, username });
+    return response;
+}
+
 
 export const logout = async (accessToken) => {
 
-    try{
-       const response  = await fetch(`${baseUrl}/logout`, {
-            headers: {
-                "X-Authorization" : accessToken
-            }
-        })
-        return response;
-    }
-    catch(e) {
+    const response = await fetch(`${baseUrl}/logout`, {
+        headers: {
+            "X-Authorization": accessToken
+        }
+    })
+    return response;
 
-        console.log(e)
-    }
-    
 }

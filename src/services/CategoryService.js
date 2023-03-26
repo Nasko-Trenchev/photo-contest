@@ -5,7 +5,6 @@ const baseUrl = "http://localhost:3030/data/categories";
 export const getAllCategories = async () => {
 
     const response = await fetch(baseUrl)
-    console.log(response);
     if (!response?.ok) {
         return Promise.reject('Categories Service Error')
     }

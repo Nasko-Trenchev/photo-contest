@@ -1,42 +1,58 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { AlertContext } from '../../contexts/AlertContext'
+
 
 import styles from './Login.module.css'
 
 import { login } from '../../services/AuthService'
 
 function Login() {
-  const {userLoginHandler} = useContext(UserContext)
+
+  const [formInput, setformInput] = useState({
+    email: '',
+    password: '',
+  })
+  const { userLoginHandler } = useContext(UserContext)
+  const { setAlertState } = useContext(AlertContext)
   const navigate = useNavigate();
-  
-  const onLoginSubmit = (e) => {
+
+  const onUserInput = (e) => {
+    setformInput(oldData => ({
+      ...oldData,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const onFormSubmit = (e) => {
     e.preventDefault();
-
-    const {
-      email,
-      password,
-    } = Object.fromEntries(new FormData(e.target));
-
-    login(email, password)
+    login(formInput.email, formInput.password)
       .then(authData => {
-        userLoginHandler(authData);
-
-        if(authData.code === 403) {
-          throw new Error(authData.message)
+        if (authData.code) {
+          setAlertState({ message: authData.message, show: true })
+          setformInput({
+            email: '',
+            password: '',
+          })
+          return;
         }
+        userLoginHandler(authData)
         navigate('/');
-      });
+      })
+      .catch((e) => {
+        setAlertState({ message: e.message, show: true })
+      })
   }
 
   return (
     <>
       <h1 className={styles["paragraph"]}>Login</h1>
-      <form className={styles["login-form"]} onSubmit={onLoginSubmit}>
+      <form className={styles["login-form"]} onSubmit={onFormSubmit}>
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+        <input type="email" id="email" name="email" value={formInput.email} onChange={onUserInput} />
         <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <input type="password" id="password" name="password" value={formInput.password} onChange={onUserInput} />
         <button type="submit">Log in</button>
         <NavLink className={styles["navlink"]} to="/register">Don`t have an account yet?</NavLink>
       </form>

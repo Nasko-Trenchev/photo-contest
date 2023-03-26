@@ -32,7 +32,7 @@ const request = async (method, url, data) => {
         return result;
     }
     catch (err) {
-       throw new Error(err.message)
+       console.log(err);
     }
 }
 

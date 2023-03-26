@@ -3,15 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import styles from './EditPhoto.module.css'
 
-import {getImageDetails, editPhoto} from '../../services/PhotoService'
+import { getImageDetails, editPhoto } from '../../services/PhotoService'
 
 export default function EditPhoto() {
     const [currentPhoto, setCurrentPhoto] = useState({})
-    const [currentInput, setCurrentInput] = useState({
+    const [formInput, setformInput] = useState({
         name: '',
         imageUrl: '',
         description: '',
-        price: ''
     })
     const { photoId, categoryId } = useParams();
     const navigate = useNavigate();
@@ -23,15 +22,15 @@ export default function EditPhoto() {
     }, [photoId])
 
     const handleChange = (e) => {
-        setCurrentInput({
-            ...currentInput,
+        setformInput({
+            ...formInput,
             [e.target.id]: e.target.value,
         })
     }
 
-    const submitChange = (e) => {
+    const onFormSubmit = (e) => {
         e.preventDefault();
-        editPhoto(photoId, { categoryId, ...currentInput })
+        editPhoto(photoId, { categoryId, ...formInput })
             .then(() => {
             });
 
@@ -40,15 +39,13 @@ export default function EditPhoto() {
     return (
         <>
             <h1 className={styles["paragraph"]}>Edit Photo</h1>
-            <form className={styles["login-form"]} onSubmit={submitChange}>
+            <form className={styles["login-form"]} onSubmit={onFormSubmit}>
                 <label htmlFor="name">Photo name:</label>
-                <input type="text" id="name" name="name" placeholder={currentPhoto.name} required value={currentInput.name} onChange={handleChange} />
+                <input type="text" id="name" name="name" placeholder={currentPhoto.name} value={formInput.name} onChange={handleChange} />
                 <label htmlFor="imageUrl">Image URL:</label>
-                <input type="text" id="imageUrl" name="imageUrl" placeholder={currentPhoto.imageUrl} required value={currentInput.imageUrl} onChange={handleChange} />
+                <input type="text" id="imageUrl" name="imageUrl" placeholder={currentPhoto.imageUrl} value={formInput.imageUrl} onChange={handleChange} />
                 <label htmlFor="description">Photo description:</label>
-                <input type="text" id="description" name="description" placeholder={currentPhoto.description} required value={currentInput.description} onChange={handleChange} />
-                <label htmlFor="price">Photo price:</label>
-                <input type="text" id="price" name="price" placeholder={currentPhoto.price} required value={currentInput.price} onChange={handleChange} />
+                <input type="text" id="description" name="description" placeholder={currentPhoto.description} value={formInput.description} onChange={handleChange} />
                 <button type="submit">Edit photo</button>
             </form>
         </>

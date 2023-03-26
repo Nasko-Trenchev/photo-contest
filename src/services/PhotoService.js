@@ -20,6 +20,7 @@ export const editPhoto = async (photoId, data) => {
 export const getCurrentContestImages = async (categoryId) => {
 
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
+    
     const response = await request.get(`${baseUrl}?where=${where}`)
 
     return response;

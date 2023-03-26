@@ -17,7 +17,9 @@ export const UserProvider = ({ children }) => {
     return (
         <>
             <UserContext.Provider value={{
-                user, userLoginHandler, userLogoutHandler,
+                user, 
+                userLoginHandler, 
+                userLogoutHandler,
                 isAuthenticated: Boolean(user.accessToken)
             }}>
                 {children}

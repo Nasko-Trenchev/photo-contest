@@ -1,59 +1,120 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { useNavigate, NavLink } from "react-router-dom";
 import { register } from '../../services/AuthService';
+import { AlertContext } from '../../contexts/AlertContext'
 
 import styles from "./Register.module.css";
 
 export default function Register() {
+
+  const [formInput, setformInput] = useState({
+    email: '',
+    username: '',
+    password: '',
+    confirmPassword: ''
+  })
+
   const navigate = useNavigate();
   const { userLoginHandler } = useContext(UserContext)
+  const { setAlertState } = useContext(AlertContext)
 
-  const onRegisterSubmit = (e) => {
+  const onUserInput = (e) => {
+    setformInput(oldData => ({
+      ...oldData,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const onFormSubmit = (e) => {
     e.preventDefault();
 
-    const data = new FormData(e.target);
+    const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(formInput.email);
 
-    const email = data.get("email");
-    const username = data.get("username")
-    const password = data.get("password")
-    const confirmPassword = data.get("confirm-password")
-
-    if (password !== confirmPassword) {
-      return
+    if(!validEmail){
+      setAlertState({ message: 'Email should have format like: example@gmail.com', show: true })
+      setformInput({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: ''
+      })
+      return;
     }
-
-    register(email, password, username)
+    if (formInput.password !== formInput.confirmPassword) {
+      setAlertState({ message: 'Passwords do not match!', show: true })
+      setformInput({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: ''
+      })
+      return;
+    }
+    if (formInput.password.length < 6) {
+      setAlertState({ message: 'Password should be at least 6 charachters', show: true })
+      setformInput({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: ''
+      })
+      return;
+    }
+    if (formInput.username.length < 3) {
+      setAlertState({ message: 'Username should be at least 3 characters', show: true })
+      setformInput({
+        email: '',
+        username: '',
+        password: '',
+        confirmPassword: ''
+      })
+      return;
+    }
+    register(formInput.email, formInput.password, formInput.username)
       .then(authData => {
+        if (authData.code) {
+          setAlertState({ message: authData.message, show: true })
+          setformInput({
+            email: '',
+            username: '',
+            password: '',
+            confirmPassword: ''
+          })
+          return;
+        }
         userLoginHandler(authData)
         navigate('/');
       })
-      .catch(() => {
-        // TODO: Navigate to 404
-        console.log("error");
+      .catch((e) => {
+        setAlertState({ message: e.message, show: true })
       })
-
   }
+
   return (
     <>
       <h1 className={styles["heading"]}>Register</h1>
       <h2 className={styles["secondHeading"]}>Create new account to submit your photos</h2>
-      <form className={styles["register-form"]} onSubmit={onRegisterSubmit}>
+      <form className={styles["register-form"]} onSubmit={onFormSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input type="text" id="email" name="email"
+            value={formInput.email} onChange={onUserInput} />
         </div>
         <div className="form-group">
           <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username" required />
+          <input type="text" id="username" name="username"
+            value={formInput.username} onChange={onUserInput} />
         </div>
         <div className="form-group">
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
+          <input type="password" id="password" name="password"
+            value={formInput.password} onChange={onUserInput} />
         </div>
         <div className="form-group">
-          <label htmlFor="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" name="confirm-password" required />
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword"
+            value={formInput.confirmPassword} onChange={onUserInput} />
         </div>
         <button type="submit">Register</button>
         <NavLink className={styles["navlink"]} to="/login">Already a member?</NavLink>

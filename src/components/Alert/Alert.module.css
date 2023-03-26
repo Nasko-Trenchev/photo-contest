@@ -1,0 +1,11 @@
+.alert {
+
+    height: 100px;
+    width: 200px;
+    background-color: red;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    z-index: 1000;
+    margin-top: 1rem;
+}

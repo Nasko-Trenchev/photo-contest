@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { UserProvider } from "./contexts/UserContext";
+import { AlertProvider } from "./contexts/AlertContext";
 
 import NavigationHeader from "./components/NavigationHeader/NavigationHeader";
 import Login from './components/Login/Login';
@@ -16,12 +17,14 @@ import EditPhoto from "./components/EditPhoto/EditPhoto";
 import EditComment from "./components/Comment/EditComment/EditComment";
 import RouteGuard from "./components/Common/RouteGuard";
 import Profile from "./components/Profile/Profile";
+import Alert from './components/Alert/Alert'
 
 function App() {
-
   return (
     <UserProvider>
+      <AlertProvider>
       <NavigationHeader />
+      <Alert/>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/details" element={<Details />} />
@@ -41,6 +44,7 @@ function App() {
         </Route>
       </Routes>
       <Footer />
+      </AlertProvider>
     </UserProvider>
   );
 }

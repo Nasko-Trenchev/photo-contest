@@ -19,12 +19,10 @@ export default function Gallery() {
   const { categoryId } = useParams();
 
   useEffect(() => {
-
     getTopLikedPhotos(categoryId)
       .then(result => {
         setTopPhotos(Object.values(result || []))
       })
-
     getCategory(categoryId)
       .then(result => {
         setCategory(result);
@@ -37,6 +35,7 @@ export default function Gallery() {
         setAllPhotos(result);
       })
   }, [categoryId])
+  
   const navigate = useNavigate();
 
   const handleOption = (id) => {
@@ -53,18 +52,17 @@ export default function Gallery() {
             {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
           </section>
           {allPhotos.length > topPhotos.length &&
-            <div>
-              <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
-            </div>
+          <div>
+            <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Load all photos" : "Hide photos"}</button>
+          </div>
           }
         </>
       }
-      {/* <div>
-        <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Hide photos" : "Load all photos"}</button>
-      </div> */}
+
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
           ? null : <AllPhotos key={x._id} data={x} />))}
+        {allPhotos.length == 0 && <h2>Currently there are no pictures for this category</h2>}
       </section>
     </main>
   )
