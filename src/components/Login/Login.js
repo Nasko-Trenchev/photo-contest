@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 
 import styles from './Login.module.css'
 
@@ -38,6 +38,7 @@ function Login() {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" name="password" required />
         <button type="submit">Log in</button>
+        <NavLink className={styles["navlink"]} to="/register">Don`t have an account yet?</NavLink>
       </form>
     </>
   )

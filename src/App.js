@@ -29,7 +29,7 @@ function App() {
   }
 
   return (
-    <UserContext.Provider value={{ user, userLoginHandler, userLogoutHandler, isAuthenticated: !!user.accessToken }}>
+    <UserContext.Provider value={{ user, userLoginHandler, userLogoutHandler, isAuthenticated: Boolean(user.accessToken)}}>
       <NavigationHeader />
       <Routes>
         <Route path="/" element={<Main />} />
@@ -37,9 +37,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/categories/:categoryId" element={<Gallery />} />
+        <Route path="/photos/:photoId" element={<Details />} />
         <Route
           element={<RouteGuard />}>
-          <Route path="/photos/:photoId" element={<Details />} />
           <Route path="/categories/:categoryId/createPhoto" element={<Photos />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/edit/:categoryId/:photoId" element={<EditPhoto />} />

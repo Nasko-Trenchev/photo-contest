@@ -9,6 +9,7 @@ main {
 .gallery h2,
 h3 {
     font-size: 32px;
+    margin-bottom: 0px;
 }
 
 .gallery h1 {
@@ -40,7 +41,7 @@ h3 {
     align-items: center;
     width: 300px;
     height: 300px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     transition: transform 0.2s ease-in-out;
 
 }
@@ -99,10 +100,10 @@ h3 {
     font-weight: 700;
     color: #313133;
     background: #8a9998;
-    background: linear-gradient(90deg, rgb(157, 189, 185) 0%, rgb(172, 194, 191) 100%);
+    background: linear-gradient(90deg, rgb(118, 123, 120) 0%, rgba(139, 141, 140, 0.359) 100%);
     border: none;
     border-radius: 1000px;
-    box-shadow: 12px 12px 24px rgba(151, 170, 168, 0.64);
+    box-shadow: 12px 12px 24px rgba(92, 99, 95, 0.64);
     transition: all 0.3s ease-in-out 0s;
     cursor: pointer;
     outline: none;
@@ -118,8 +119,8 @@ h3 {
     border-radius: 1000px;
     min-width: calc(300px + 12px);
     min-height: calc(60px + 12px);
-    border: 6px solid #95bab3;
-    box-shadow: 0 0 60px rgba(154, 193, 185, 0.64);
+    border: 6px solid #727673;
+    box-shadow: 0 0 60px rgba(127, 130, 128, 0.64);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -144,7 +145,7 @@ button:focus::before {
     width: 30px;
     height: 30px;
     border-radius: 100%;
-    border: 6px solid #99aeaa;
+    border: 6px solid #787b78a4;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -178,8 +179,8 @@ button:focus::after {
     outline: 0;
     cursor: pointer;
     color: white;
-    background-color: rgb(84, 105, 212);
-    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(84 105 212) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+    background-color: rgb(107, 107, 107);
+    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(96, 95, 95) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
     border-radius: 4px;
     font-size: 14px;
     font-weight: 500;

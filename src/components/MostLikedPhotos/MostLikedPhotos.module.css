@@ -6,8 +6,8 @@
     font-size: 32px;
 }
 
-.gallery section button {
 
+.gallery section button {
     margin-top: 50px;
     color: black;
     background-color: wheat;
@@ -32,12 +32,12 @@
     align-items: center;
     width: 420px;
     height: 320px;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     transition: transform 0.2s ease-in-out;
 
 }
 
-.box:nth-child(2){
+/* .box:nth-child(2){
     order: -1;
     margin-bottom: 40px;
 }
@@ -46,8 +46,7 @@
     align-self: flex-start;
     margin-top: 10px;
 }
-
-
+ */
 
 .box img {
     width: 420px;
@@ -72,6 +71,7 @@
 .image-overlay p {
     font-size: 16px;
     line-height: 1.5; 
+    margin-top: 30px;
     margin-bottom: 10px;
 }
 

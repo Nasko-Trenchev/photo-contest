@@ -4,11 +4,10 @@ const baseUrl = "http://localhost:3030/data/categories";
 
 export const getAllCategories = async () => {
 
-    const response = await request.get(baseUrl)
-
+    const response = await fetch(baseUrl)
+    console.log(response);
     if (!response?.ok) {
-        console.log(response);
-        return Promise.reject(response.message)
+        return Promise.reject('Categories Service Error')
     }
 
     const result = await response.json();
@@ -18,7 +17,7 @@ export const getAllCategories = async () => {
 
 export const getCategory = async (categoryId) => {
 
-    const response = await request.get(`${baseUrl}/${categoryId}`)
+    const response = await fetch(`${baseUrl}/${categoryId}`)
 
     const result = await response.json();
 

@@ -22,8 +22,8 @@ export default function Gallery() {
 
     getTopLikedPhotos(categoryId)
       .then(result => {
-        setTopPhotos(Object.values(result))
-      });
+        setTopPhotos(Object.values(result || []))
+      })
 
     getCategory(categoryId)
       .then(result => {

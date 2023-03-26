@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { register } from '../../services/AuthService';
 
 import styles from "./Register.module.css";
@@ -56,6 +56,7 @@ export default function Register() {
           <input type="password" id="confirm-password" name="confirm-password" required />
         </div>
         <button type="submit">Register</button>
+        <NavLink className={styles["navlink"]} to="/login">Already a member?</NavLink>
       </form>
     </>
   )

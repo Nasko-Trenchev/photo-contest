@@ -12,13 +12,14 @@ export default function Main() {
     useEffect(() => {
         getAllCategories()
             .then(result => {
+                console.log(result)
                 setCategories(result || []);
             })
             .catch((err) => {
                 console.log(err)
             })
     }, [])
-
+    console.log(categories);
     const navigate = useNavigate();
 
     const handleOption = (id) => {
@@ -41,7 +42,7 @@ export default function Main() {
                             <button onClick={() => handleOption(category._id)}>View category</button>
                         </div>
                     </div>)}
-                    {categories.length === 0 && <h2>There aren`t any categories, yet</h2>}
+                {categories.length === 0 && <h2>There aren`t any categories, yet</h2>}
             </section>
         </main>
     )

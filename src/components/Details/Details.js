@@ -16,7 +16,7 @@ export default function Details() {
   const [photoCreator, setPhotoCreator] = useState({});
 
   const { photoId } = useParams();
-  const { user } = useContext(UserContext);
+  const { user, isAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,6 +55,7 @@ export default function Details() {
       </div>
       <div className={styles["details-container"]}>
         <h1 className={styles["name"]}>{currentPhoto.contestName}</h1>
+        {isAuthenticated &&
         <div className={styles["like-section"]}>
           {user._id !== currentPhoto._ownerId ?
             <>
@@ -65,7 +66,7 @@ export default function Details() {
             </> : <>
               <button className={styles["editButton"]} onClick={() => navigate(`/edit/${currentPhoto.categoryId}/${currentPhoto._id}`)}>Edit</button>
             </>}
-        </div>
+        </div>}
         <Comment />
       </div>
     </main>

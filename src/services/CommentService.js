@@ -5,6 +5,7 @@ const baseUrl = `http://localhost:3030/data/comments`;
 export const createComment = async (data) => {
 
     const response = await request.post(baseUrl, data);
+
     return response;
 }
 

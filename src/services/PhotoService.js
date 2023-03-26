@@ -20,12 +20,10 @@ export const editPhoto = async (photoId, data) => {
 export const getCurrentContestImages = async (categoryId) => {
 
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
-    try {
-        const response = await request.get(`${baseUrl}?where=${where}`)
-        return response;
-    } catch (error) {
-        console.log(error);
-    }
+    const response = await request.get(`${baseUrl}?where=${where}`)
+
+    return response;
+   
 
 }
 
@@ -41,6 +39,6 @@ export const getPhotoCreator = async (photoId) => {
 export const getImageDetails = async (id) => {
 
     const response = await request.get(`${baseUrl}/${id}`)
-
+    
     return response;
 }

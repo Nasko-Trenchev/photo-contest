@@ -11,16 +11,20 @@ export default function NavigationHeader(){
     return (
         <header>
         <nav className={styles["navbar__menu"]}>
-          <div className={styles["logo"]}>
+        <NavLink to="/" className={styles["bn8"]}><i className="fa fa-home"></i> Home</NavLink>
+
+          {/* <div className={styles["logo"]}>
           <img src="asd" alt="Phosto"/>
-          </div>
+          </div> */}
         <ul className={styles["navbar__list"]}>
           {user.accessToken ?
           <>
-          <li><NavLink className={styles["navbar__item"]} to="/">Home</NavLink></li>
+          {/* <li><NavLink className={styles["navbar__item"]} to="/">Home</NavLink></li> */}
           <li><NavLink className={styles["navbar__item"]} to="/logout">Logout</NavLink></li></>
           :
-          <><li><NavLink className={styles["navbar__item"]} to="/login">Login</NavLink></li>
+          <>
+          {/* <li><NavLink className={styles["navbar__item"]} to="/">Home</NavLink></li> */}
+          <li><NavLink className={styles["navbar__item"]} to="/login">Login</NavLink></li>
           <li><NavLink className={styles["navbar__item"]} to="/register">Register</NavLink></li></>}
           {user.email === "admin@abv.bg" && <li><NavLink className={styles["navbar__item"]} to="/admin">Admin</NavLink></li>}
         </ul>
