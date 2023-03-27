@@ -9,7 +9,7 @@ const Alert = () => {
     useEffect(() => {
         const id = setTimeout(() => {
           setAlertState({show: false, message: ''})  
-        }, 100000)
+        }, 4000)
         return () => clearTimeout(id)
     }, [alertState, setAlertState])
    

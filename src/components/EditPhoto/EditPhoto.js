@@ -33,8 +33,19 @@ export default function EditPhoto() {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
+
+        if (formInput.name.length < 3) {
+            setAlertState({ message: 'Name should be at least 3 characters long!', show: true })
+            setformInput({
+                name: '',
+                imageUrl: '',
+                description: ''
+            })
+            return;
+        }
+
         const validPhoto = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi.test(formInput.imageUrl)
-        if(!validPhoto){
+        if (!validPhoto) {
             setAlertState({ message: 'Invalid photo URL', show: true })
             setformInput({
                 name: '',
@@ -42,7 +53,17 @@ export default function EditPhoto() {
                 description: ''
             })
             return;
-          }
+        }
+
+        if (formInput.description.length < 5) {
+            setAlertState({ message: 'Description should be at least 5 characters long!', show: true })
+            setformInput({
+                name: '',
+                imageUrl: '',
+                description: ''
+            })
+            return;
+        }
         editPhoto(photoId, { categoryId, ...formInput })
             .then(() => {
             });

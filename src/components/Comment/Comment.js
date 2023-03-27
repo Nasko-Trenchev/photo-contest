@@ -1,6 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import { AlertContext } from '../../contexts/AlertContext'
+
 
 import styles from './Comment.module.css'
 
@@ -15,6 +17,8 @@ export default function Comment() {
   const { photoId } = useParams();
   const navigate = useNavigate();
   const { user, isAuthenticated } = useContext(UserContext);
+  const { setAlertState } = useContext(AlertContext)
+
 
   useEffect(() => {
     getCommentsWithUsers(photoId)
@@ -25,6 +29,12 @@ export default function Comment() {
 
   const submitComment = (e) => {
     e.preventDefault();
+
+    if (currentComment === '') {
+      setAlertState({ message: 'Comment should have content!', show: true })
+      setCurrentComment('')
+      return;
+  }
     createComment({ photoId: photoId, user: user, comment: currentComment })
       .then(result => {
         setComments(oldstate => [...oldstate, result]);
@@ -58,7 +68,7 @@ export default function Comment() {
           <label htmlFor="comment" className={styles["comment-label"]}>Leave a Comment:</label>
           <textarea id="comment" name="comment" className={styles["comment-input"]}
             value={currentComment}
-            onChange={(e) => setCurrentComment(e.target.value)} required>
+            onChange={(e) => setCurrentComment(e.target.value)}>
           </textarea>
           <button type="submit" className={styles["comment-button"]}>Post Comment</button>
         </form>
