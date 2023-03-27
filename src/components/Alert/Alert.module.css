@@ -2,7 +2,7 @@
     height: 70px;
     width: 210px;
     background-color: red;
-    position: absolute;
+    position: fixed;
     left: 85%;
     right: 15%;
     z-index: 1000;
@@ -12,7 +12,11 @@
 }
 
 .alert p {
+    
     margin-top: 20px;
     color: black;
     font-weight: bold;
+    /* transform: translateX(50%);
+    transform: translateY(50%); */
+
 }

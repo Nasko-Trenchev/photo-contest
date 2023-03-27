@@ -56,7 +56,7 @@ export default function Register() {
     }
 
     if (formInput.password.length < 6) {
-      setAlertState({ message: 'Password should be at least 6 charachters', show: true })
+      setAlertState({ message: 'Password should be at least 6 charachters long!', show: true })
       setformInput({
         email: '',
         username: '',
@@ -68,7 +68,7 @@ export default function Register() {
     }
 
     if (formInput.username.length < 3) {
-      setAlertState({ message: 'Username should be at least 3 characters', show: true })
+      setAlertState({ message: 'Username should be at least 3 characters long!', show: true })
       setformInput({
         email: '',
         username: '',
