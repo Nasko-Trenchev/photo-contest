@@ -23,6 +23,7 @@ export const getLikeCount = async (photoId) => {
 }
 
 export const getAllLikes = async () => {
+    
     try {
         const response = await request.get(`${baseUrl}`);
         return response;

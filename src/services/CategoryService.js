@@ -6,7 +6,7 @@ export const getAllCategories = async () => {
 
     try {
         const response = await request.get(baseUrl);
-        
+
         return response;
 
     } catch (error) {
@@ -15,14 +15,6 @@ export const getAllCategories = async () => {
 
         return [];
     }
-
-    // if (!response?.ok) {
-    //     return Promise.reject('Categories Service Error')
-    // }
-
-    // const result = await response.json();
-
-    // return response;
 }
 
 export const getCategory = async (categoryId) => {

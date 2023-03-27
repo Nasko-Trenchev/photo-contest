@@ -3,7 +3,6 @@ import { UserContext } from '../../contexts/UserContext';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { AlertContext } from '../../contexts/AlertContext'
 
-
 import styles from './Login.module.css'
 
 import { login } from '../../services/AuthService'
@@ -13,7 +12,7 @@ function Login() {
     email: '',
     password: '',
   });
-  
+
   const { userLoginHandler } = useContext(UserContext)
   const { setAlertState } = useContext(AlertContext)
   const navigate = useNavigate();

@@ -3,11 +3,9 @@ import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { AlertContext } from '../../contexts/AlertContext'
 
-
 import styles from './Comment.module.css'
 
 import { getCommentsWithUsers, createComment, deleteComment } from '../../services/CommentService';
-
 
 export default function Comment() {
 
@@ -15,10 +13,9 @@ export default function Comment() {
   const [currentComment, setCurrentComment] = useState('');
 
   const { photoId } = useParams();
-  const navigate = useNavigate();
   const { user, isAuthenticated } = useContext(UserContext);
   const { setAlertState } = useContext(AlertContext)
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     getCommentsWithUsers(photoId)
@@ -34,7 +31,7 @@ export default function Comment() {
       setAlertState({ message: 'Comment should have content!', show: true })
       setCurrentComment('')
       return;
-  }
+    }
     createComment({ photoId: photoId, user: user, comment: currentComment })
       .then(result => {
         setComments(oldstate => [...oldstate, result]);

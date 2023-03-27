@@ -29,12 +29,12 @@ export default function CreatePhotos() {
   const onFormSubmit = (e) => {
     e.preventDefault();
 
-    if(formInput.name.length < 3) {
+    if (formInput.name.length < 3) {
       setAlertState({ message: 'Name should be at least 3 characters long!', show: true })
       setformInput({
-          name: '',
-          imageUrl: '',
-          description: ''
+        name: '',
+        imageUrl: '',
+        description: ''
       })
       return;
     }
@@ -51,12 +51,12 @@ export default function CreatePhotos() {
       return;
     }
 
-    if(formInput.description.length < 5) {
+    if (formInput.description.length < 5) {
       setAlertState({ message: 'Description should be at least 5 characters long!', show: true })
       setformInput({
-          name: '',
-          imageUrl: '',
-          description: ''
+        name: '',
+        imageUrl: '',
+        description: ''
       })
       return;
     }

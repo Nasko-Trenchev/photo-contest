@@ -5,9 +5,7 @@ import { getAllPhotos } from '../../services/PhotoService';
 import { getAllLikes } from '../../services/LikeService';
 import { getAllComments } from '../../services/CommentService';
 
-
 import styles from './Profile.module.css'
-
 
 export default function Profile() {
 

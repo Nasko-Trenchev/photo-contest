@@ -29,7 +29,7 @@ export default function AllPhotos({
 
     return (
         <div className={styles["box"]}>
-            <img src={data.imageUrl} alt="Rank 1" />
+            <img src={data.imageUrl} alt="Photo in category" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 <p>Current likes {likeCount}</p>

@@ -21,7 +21,7 @@ export default function Gallery() {
   useEffect(() => {
     getTopLikedPhotos(categoryId)
       .then(result => {
-        if(result.code) {
+        if (result.code) {
           console.log(result.message)
           return;
         }
@@ -29,7 +29,7 @@ export default function Gallery() {
       })
     getCategory(categoryId)
       .then(result => {
-        if(result.code) {
+        if (result.code) {
           console.log(result.message)
           return;
         }
@@ -40,14 +40,14 @@ export default function Gallery() {
   useEffect(() => {
     getCurrentContestImages(categoryId)
       .then(result => {
-        if(result.code) {
+        if (result.code) {
           console.log(result.message)
           return;
         }
         setAllPhotos(result);
       })
   }, [categoryId])
-  
+
   const navigate = useNavigate();
 
   const handleOption = (id) => {
@@ -64,13 +64,14 @@ export default function Gallery() {
             {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
           </section>
           {allPhotos.length > topPhotos.length &&
-          <div>
-            <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>{showPhotos ? "Load all photos" : "Hide photos"}</button>
-          </div>
+            <div>
+              <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>
+                {showPhotos ? "Load all photos" : "Hide photos"}
+              </button>
+            </div>
           }
         </>
       }
-
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
           ? null : <AllPhotos key={x._id} data={x} />))}

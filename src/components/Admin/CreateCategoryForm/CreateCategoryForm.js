@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './CreateCategoryForm.module.css'
 
-import {createCategory} from '../../../services/CategoryService';
+import { createCategory } from '../../../services/CategoryService';
 
 
 export default function CreateCategoryForm() {

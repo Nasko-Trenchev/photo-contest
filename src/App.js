@@ -23,27 +23,27 @@ function App() {
   return (
     <UserProvider>
       <AlertProvider>
-      <NavigationHeader />
-      <Alert/>
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/details" element={<Details />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/categories/:categoryId" element={<Gallery />} />
-        <Route path="/photos/:photoId" element={<Details />} />
-        <Route
-          element={<RouteGuard />}>
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/categories/:categoryId/createPhoto" element={<Photos />} />
-          <Route path="/logout" element={<Logout />} />
-          <Route path="/edit/:categoryId/:photoId" element={<EditPhoto />} />
-          <Route path="/comments/:photoId/:commentId/edit" element={<EditComment />} />
-          <Route path="/createCategory" element={<CreateCategoryForm />} />
-          <Route path="/admin" element={<Admin />} />
-        </Route>
-      </Routes>
-      <Footer />
+        <NavigationHeader />
+        <Alert />
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/details" element={<Details />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/categories/:categoryId" element={<Gallery />} />
+          <Route path="/photos/:photoId" element={<Details />} />
+          <Route
+            element={<RouteGuard />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/categories/:categoryId/createPhoto" element={<Photos />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/edit/:categoryId/:photoId" element={<EditPhoto />} />
+            <Route path="/comments/:photoId/:commentId/edit" element={<EditComment />} />
+            <Route path="/createCategory" element={<CreateCategoryForm />} />
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+        </Routes>
+        <Footer />
       </AlertProvider>
     </UserProvider>
   );

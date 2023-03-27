@@ -31,7 +31,7 @@ export default function Register() {
 
     const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(formInput.email);
 
-    if(!validEmail){
+    if (!validEmail) {
       setAlertState({ message: 'Email should have format like: example@gmail.com', show: true })
       setformInput({
         email: '',
@@ -39,7 +39,7 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
-      
+
       return;
     }
 
@@ -88,6 +88,7 @@ export default function Register() {
             password: '',
             confirmPassword: ''
           })
+          
           return;
         }
         userLoginHandler(authData)

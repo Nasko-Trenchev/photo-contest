@@ -8,7 +8,7 @@ export default function Admin() {
   const handleOption = (category) => {
     navigate(`/${category}`);
   }
-  
+
   return (
     <main>
       <h1>Admin page</h1>

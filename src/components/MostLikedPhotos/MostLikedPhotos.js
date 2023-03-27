@@ -19,16 +19,16 @@ export default function MostLikedPhotos({
                 }
             })
     })
+    
     const navigate = useNavigate();
 
     const handleOption = (Id) => {
         navigate(`/photos/${Id}`);
     };
 
-
     return (
         <div className={styles["box"]}>
-            <img src={data.imageUrl} alt="Rank 1" />
+            <img src={data.imageUrl} alt="Top pictures" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 {likeCount && <p>Current likes {likeCount}</p>}

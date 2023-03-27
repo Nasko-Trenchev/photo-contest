@@ -6,21 +6,21 @@ const request = async (method, url, data) => {
         const auth = JSON.parse(authString || '{}');
         let headers = {};
 
-        if(auth.accessToken) {
+        if (auth.accessToken) {
             headers["X-Authorization"] = auth.accessToken
         }
-        
+
         let requestBuilder;
 
-        if(method === "GET"){
-            requestBuilder = fetch(url, {headers});
+        if (method === "GET") {
+            requestBuilder = fetch(url, { headers });
         }
         else {
             requestBuilder = fetch(url, {
                 method,
                 headers: {
                     ...headers,
-                 'content-type' : 'application/json'
+                    'content-type': 'application/json'
                 },
                 body: JSON.stringify(data)
             })
@@ -32,7 +32,7 @@ const request = async (method, url, data) => {
         return result;
     }
     catch (err) {
-       console.log(err);
+        console.log(err);
     }
 }
 

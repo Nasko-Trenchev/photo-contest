@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { AlertContext } from '../../contexts/AlertContext'
 
-
 import styles from './EditPhoto.module.css'
 
 import { getImageDetails, editPhoto } from '../../services/PhotoService'

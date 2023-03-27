@@ -19,6 +19,7 @@ export default function Main() {
                 setCategories(result);
             })
     }, [])
+    
     const navigate = useNavigate();
 
     const handleOption = (id) => {
@@ -34,7 +35,7 @@ export default function Main() {
             <section>
                 {categories.map(category =>
                     <div key={category._id} className={styles["box"]}>
-                        <img src={category.imageUrl} alt="category" />
+                        <img src={category.imageUrl} alt="category Photo" />
                         <div className={styles["image-overlay"]}>
                             <h2>{category.name}</h2>
                             <button onClick={() => handleOption(category._id)}>View category</button>
