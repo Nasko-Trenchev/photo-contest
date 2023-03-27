@@ -24,19 +24,29 @@ export default function Details() {
   useEffect(() => {
     getImageDetails(photoId)
       .then(result => {
+        if(result.code) {
+          console.log(result.message)
+          return;
+        }
         setCurrentPhoto(result);
       });
     getLikeCount(photoId)
       .then(result => {
-        if (result.code !== 404) {
-          setLikeCount(result);
+        if (result.code) {
+          console.log(result.message)
+          return;
         }
+        setLikeCount(result);
       });
   }, [photoId])
 
   useEffect(() => {
     getAllLikes()
       .then(result => {
+        if(result.code) {
+          console.log(result.message)
+          return;
+        }
         setLikes(result);
       })
   }, [])

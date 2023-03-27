@@ -9,7 +9,7 @@ const request = async (method, url, data) => {
         if(auth.accessToken) {
             headers["X-Authorization"] = auth.accessToken
         }
-
+        
         let requestBuilder;
 
         if(method === "GET"){

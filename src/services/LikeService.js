@@ -12,16 +12,24 @@ export const createLike = async (data) => {
 export const getLikeCount = async (photoId) => {
 
     const where = encodeURIComponent(`photoId="${photoId}"`)
-    const response = await request.get(`${baseUrl}?where=${where}&count`,)
-    return response;
-    
+
+    try {
+        const response = await request.get(`${baseUrl}?where=${where}&count`,)
+        return response;
+    } catch (error) {
+        console.log(error)
+        return 0;
+    }
 }
 
 export const getAllLikes = async () => {
-
-    const response = await request.get(`${baseUrl}`);
-    
-    return response;
+    try {
+        const response = await request.get(`${baseUrl}`);
+        return response;
+    } catch (error) {
+        console.log(error)
+        return [];
+    }
 }
 
 export const getTopLikedPhotos = async (categoryId) => {
@@ -44,10 +52,12 @@ export const getTopLikedPhotos = async (categoryId) => {
         const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
         const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])
         if (topPhotosByLikes.length < 3) {
+
             return topPhotosByLikes;
         }
         return topPhotosByLikes.slice(0, 3);
     } catch (error) {
-        console.log("da")
+        console.log(error)
+        return [];
     }
 }

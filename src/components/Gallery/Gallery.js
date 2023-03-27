@@ -21,10 +21,18 @@ export default function Gallery() {
   useEffect(() => {
     getTopLikedPhotos(categoryId)
       .then(result => {
-        setTopPhotos(Object.values(result || []))
+        if(result.code) {
+          console.log(result.message)
+          return;
+        }
+        setTopPhotos(Object.values(result))
       })
     getCategory(categoryId)
       .then(result => {
+        if(result.code) {
+          console.log(result.message)
+          return;
+        }
         setCategory(result);
       })
   }, [categoryId])
@@ -32,6 +40,10 @@ export default function Gallery() {
   useEffect(() => {
     getCurrentContestImages(categoryId)
       .then(result => {
+        if(result.code) {
+          console.log(result.message)
+          return;
+        }
         setAllPhotos(result);
       })
   }, [categoryId])
@@ -62,7 +74,7 @@ export default function Gallery() {
       <section>
         {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
           ? null : <AllPhotos key={x._id} data={x} />))}
-        {allPhotos.length == 0 && <h2>Currently there are no pictures for this category</h2>}
+        {allPhotos.length === 0 && <h2>Currently there are no pictures for this category</h2>}
       </section>
     </main>
   )

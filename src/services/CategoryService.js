@@ -4,23 +4,40 @@ const baseUrl = "http://localhost:3030/data/categories";
 
 export const getAllCategories = async () => {
 
-    const response = await fetch(baseUrl)
-    if (!response?.ok) {
-        return Promise.reject('Categories Service Error')
+    try {
+        const response = await request.get(baseUrl);
+        
+        return response;
+
+    } catch (error) {
+
+        console.log(error)
+
+        return [];
     }
 
-    const result = await response.json();
+    // if (!response?.ok) {
+    //     return Promise.reject('Categories Service Error')
+    // }
 
-    return result;
+    // const result = await response.json();
+
+    // return response;
 }
 
 export const getCategory = async (categoryId) => {
 
-    const response = await fetch(`${baseUrl}/${categoryId}`)
+    try {
+        const response = await request.get(`${baseUrl}/${categoryId}`)
 
-    const result = await response.json();
+        return response;
 
-    return result;
+    } catch (error) {
+
+        console.log(error)
+
+        return {};
+    }
 }
 
 

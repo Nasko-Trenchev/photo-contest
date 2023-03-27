@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { AlertContext } from '../../contexts/AlertContext'
+
 
 import styles from './EditPhoto.module.css'
 
@@ -13,6 +15,7 @@ export default function EditPhoto() {
         description: '',
     })
     const { photoId, categoryId } = useParams();
+    const { setAlertState } = useContext(AlertContext)
     const navigate = useNavigate();
     useEffect(() => {
         getImageDetails(photoId)
@@ -30,6 +33,16 @@ export default function EditPhoto() {
 
     const onFormSubmit = (e) => {
         e.preventDefault();
+        const validPhoto = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi.test(formInput.imageUrl)
+        if(!validPhoto){
+            setAlertState({ message: 'Invalid photo URL', show: true })
+            setformInput({
+                name: '',
+                imageUrl: '',
+                description: ''
+            })
+            return;
+          }
         editPhoto(photoId, { categoryId, ...formInput })
             .then(() => {
             });

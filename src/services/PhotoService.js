@@ -21,10 +21,14 @@ export const getCurrentContestImages = async (categoryId) => {
 
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
     
-    const response = await request.get(`${baseUrl}?where=${where}`)
-
-    return response;
-   
+    try {
+        const response = await request.get(`${baseUrl}?where=${where}`)
+        return response;
+    }
+    catch(err){
+        console.log(err)
+        return [];
+    }
 
 }
 

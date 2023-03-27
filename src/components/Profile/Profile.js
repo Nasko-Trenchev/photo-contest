@@ -20,16 +20,28 @@ export default function Profile() {
     useEffect(() => {
         getAllPhotos()
             .then(result => {
+                if (result.code) {
+                    console.log(result.message)
+                    return;
+                }
                 setPhotosUploaded(result.filter(x => x._ownerId === user._id))
             });
 
         getAllLikes()
             .then(result => {
+                if (result.code) {
+                    console.log(result.message)
+                    return;
+                }
                 setTotalLikesGiven(result.filter(x => x._ownerId === user._id))
             });
 
         getAllComments()
             .then(result => {
+                if (result.code) {
+                    console.log(result.message)
+                    return;
+                }
                 setTotalCommentsGiven(result.filter(x => x._ownerId === user._id))
             });
     }, [user]);

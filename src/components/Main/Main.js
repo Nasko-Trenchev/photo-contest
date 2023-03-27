@@ -12,10 +12,11 @@ export default function Main() {
     useEffect(() => {
         getAllCategories()
             .then(result => {
-                setCategories(result || []);
-            })
-            .catch((err) => {
-                console.log(err)
+                if (result.code) {
+                    console.log(result.message)
+                    return;
+                }
+                setCategories(result);
             })
     }, [])
     const navigate = useNavigate();

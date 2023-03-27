@@ -15,10 +15,9 @@ export default function CreateCategoryForm() {
     const {
       imageUrl,
       name,
-      prize
     } = Object.fromEntries(new FormData(e.target));
 
-    createCategory({ imageUrl, name, prize })
+    createCategory({ imageUrl, name })
       .then(() => {
         navigate('/');
       })
@@ -32,8 +31,6 @@ export default function CreateCategoryForm() {
         <input type="text" id="imageUrl" name="imageUrl" required />
         <label htmlFor="name">Category name:</label>
         <input type="text" id="name" name="name" required />
-        <label htmlFor="prize">Category prize</label>
-        <input type="text" id="prize" name="prize" required />
         <button type="submit">Create</button>
       </form>
     </>

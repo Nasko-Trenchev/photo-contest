@@ -9,20 +9,29 @@ export const createComment = async (data) => {
     return response;
 }
 
-export const getComments = async (photoId) => {
+export const getCommentsWithUsers = async (photoId) => {
 
     const where = encodeURIComponent(`photoId="${photoId}"`)
 
     const relations = encodeURIComponent(`user=_ownerId:users`)
-    
-    const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
 
-    return response;
+    try {
+        const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
+
+        return response;
+
+    } catch (error) {
+
+        console.log(error)
+
+        return [];
+    }
+
 }
 
 export const deleteComment = async (commentId) => request.remove(`${baseUrl}/${commentId}`)
 
-export const editComment = async (commentId, data ) => {
+export const editComment = async (commentId, data) => {
 
     const response = await request.put(`${baseUrl}/${commentId}`, data)
 
@@ -30,8 +39,17 @@ export const editComment = async (commentId, data ) => {
 }
 
 export const getAllComments = async () => {
-    
-    const response = await request.get(`${baseUrl}`);
 
-    return response;
+    try {
+        const response = await request.get(`${baseUrl}`);
+
+        return response;
+
+    } catch (error) {
+        
+        console.log(error)
+
+        return [];
+    }
+ 
 }

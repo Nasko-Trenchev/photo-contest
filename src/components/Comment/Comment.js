@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 
 import styles from './Comment.module.css'
 
-import { getComments, createComment, deleteComment } from '../../services/CommentService';
+import { getCommentsWithUsers, createComment, deleteComment } from '../../services/CommentService';
 
 
 export default function Comment() {
@@ -17,7 +17,7 @@ export default function Comment() {
   const { user, isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
-    getComments(photoId)
+    getCommentsWithUsers(photoId)
       .then(result => {
         setComments(result);
       })
