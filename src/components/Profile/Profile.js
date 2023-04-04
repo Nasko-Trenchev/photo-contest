@@ -50,11 +50,11 @@ export default function Profile() {
                 <div className={styles["profile"]} >
                     <h1>Profile page</h1>
                     <ul>
-                        <li><strong>Email: <i>{user.email}</i></strong></li>
-                        <li><strong>Username: <i>{user.username}</i></strong><i></i></li>
-                        <li><strong>Total uploaded pictures: <i>{photosUploaded.length}</i></strong></li>
-                        <li><strong>Total likes given: <i>{totalLikesGiven.length}</i></strong></li>
-                        <li><strong>Total comments: <i>{totalCommentsGiven.length}</i></strong></li>
+                        <li><strong>Email: {user.email}</strong></li>
+                        <li><strong>Username: {user.username}</strong><i></i></li>
+                        <li><strong>Total uploaded pictures: {photosUploaded.length}</strong></li>
+                        <li><strong>Total likes given: {totalLikesGiven.length}</strong></li>
+                        <li><strong>Total comments: {totalCommentsGiven.length}</strong></li>
                     </ul>
                 </div>
             </section>

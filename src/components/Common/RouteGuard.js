@@ -6,14 +6,12 @@ const RouteGuard = () => {
 
    const { isAuthenticated } = useContext(UserContext);
 
-
    if (!isAuthenticated) {
 
       return <Navigate to="/login" replace />
    }
 
    return <Outlet />
-
 }
 
 export default RouteGuard;
