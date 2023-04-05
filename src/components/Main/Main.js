@@ -12,7 +12,7 @@ export default function Main() {
     useEffect(() => {
         getAllCategories()
             .then(result => {
-                if (result.code) {
+                if (result?.code) {
                     console.log(result.message)
                     return;
                 }

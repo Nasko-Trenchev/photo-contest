@@ -1,6 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
+import AllPhotos from "../AllPhotos/AllPhotos";
+
 import { getAllPhotos } from '../../services/PhotoService';
 import { getAllLikes } from '../../services/LikeService';
 import { getAllComments } from '../../services/CommentService';
@@ -46,6 +48,7 @@ export default function Profile() {
 
     return (
         <>
+        <main className={styles['gallery']}>
             <section>
                 <div className={styles["profile"]} >
                     <h1>Profile page</h1>
@@ -58,5 +61,11 @@ export default function Profile() {
                     </ul>
                 </div>
             </section>
+            <h2>Your pictures</h2>
+            <section>     
+                {photosUploaded?.map(x => <AllPhotos key={x._id} data={x} />)}
+                {photosUploaded.length === 0 && <h2>You don`t have any uploaded pictures</h2>}
+            </section>
+            </main>
         </>)
 }

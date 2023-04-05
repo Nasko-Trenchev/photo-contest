@@ -2,12 +2,13 @@ import { render, screen } from "@testing-library/react";
 import Profile from './Profile';
 import { UserContext } from "../../contexts/UserContext";
 
+
 describe('Profile Component', () => {
 
     test("Email is correct", () => {
         const user = { email: "Giorgio@abv.bg" };
         render(
-            <UserContext.Provider value={{user}}>
+            <UserContext.Provider value={{ user }}>
                 <Profile />
             </UserContext.Provider>
         );
@@ -15,9 +16,9 @@ describe('Profile Component', () => {
     });
 
     test("Username is correct", () => {
-        const user = { username: "Georgi" };
+        const user = { username: "Georgi", };
         render(
-            <UserContext.Provider value={{user}}>
+            <UserContext.Provider value={{ user }}>
                 <Profile />
             </UserContext.Provider>
         );

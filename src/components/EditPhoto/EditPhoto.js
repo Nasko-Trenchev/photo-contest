@@ -74,11 +74,14 @@ export default function EditPhoto() {
             <h1 className={styles["paragraph"]}>Edit Photo</h1>
             <form className={styles["login-form"]} onSubmit={onFormSubmit}>
                 <label htmlFor="name">Photo name:</label>
-                <input type="text" id="name" name="name" placeholder={currentPhoto.name} value={formInput.name} onChange={handleChange} />
+                <input type="text" id="name" name="name" placeholder={currentPhoto.name}
+                 value={formInput.name} onChange={handleChange} />
                 <label htmlFor="imageUrl">Image URL:</label>
-                <input type="text" id="imageUrl" name="imageUrl" placeholder={currentPhoto.imageUrl} value={formInput.imageUrl} onChange={handleChange} />
+                <input type="text" id="imageUrl" name="imageUrl" placeholder={currentPhoto.imageUrl}
+                 value={formInput.imageUrl} onChange={handleChange} />
                 <label htmlFor="description">Photo description:</label>
-                <input type="text" id="description" name="description" placeholder={currentPhoto.description} value={formInput.description} onChange={handleChange} />
+                <input type="text" id="description" name="description" placeholder={currentPhoto.description} 
+                value={formInput.description} onChange={handleChange} />
                 <button type="submit">Edit photo</button>
             </form>
         </>

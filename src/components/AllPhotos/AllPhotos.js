@@ -26,7 +26,6 @@ export default function AllPhotos({
         navigate(`/photos/${id}`);
     };
 
-
     return (
         <div className={styles["box"]}>
             <img src={data.imageUrl} alt="Photo in category" />

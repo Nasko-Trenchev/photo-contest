@@ -56,7 +56,7 @@ export default function Gallery() {
 
   return (
     <main className={styles['gallery']} >
-      <button className={styles['createButton']} onClick={() => handleOption(categoryId)}>Join {category.name} contest</button>
+      <button className={styles['createButton']} onClick={() => handleOption(categoryId)}>Join {category.name} category</button>
       {topPhotos.length > 0 &&
         <>
           <h2>The most liked photos:</h2>
@@ -66,7 +66,7 @@ export default function Gallery() {
           {allPhotos.length > topPhotos.length &&
             <div>
               <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>
-                {showPhotos ? "Load all photos" : "Hide photos"}
+                {showPhotos ?  "Hide photos" : "Load all photos"}
               </button>
             </div>
           }
