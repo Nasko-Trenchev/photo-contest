@@ -12,12 +12,9 @@ export default function Main() {
     useEffect(() => {
         getAllCategories()
             .then(result => {
-                if (result?.code) {
-                    console.log(result.message)
-                    return;
-                }
-                setCategories(result);
-            })
+               result.code ? console.log(result.message) : setCategories(result);
+            });
+            
     }, [])
     
     const navigate = useNavigate();
@@ -35,7 +32,7 @@ export default function Main() {
             <section>
                 {categories.map(category =>
                     <div key={category._id} className={styles["box"]}>
-                        <img src={category.imageUrl} alt="category Photo" />
+                        <img src={category.imageUrl} alt="Category" />
                         <div className={styles["image-overlay"]}>
                             <h2>{category.name}</h2>
                             <button onClick={() => handleOption(category._id)}>View category</button>

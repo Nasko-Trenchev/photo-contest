@@ -32,7 +32,9 @@ const request = async (method, url, data) => {
         return result;
     }
     catch (err) {
+        //If the server is throwing error like: Failed to fetch
         console.log(err);
+        return {code: 500, message: "Server error"}
     }
 }
 

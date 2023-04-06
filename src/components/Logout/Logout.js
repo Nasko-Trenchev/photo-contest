@@ -13,7 +13,7 @@ export default function Logout() {
             .then(() => {
                 userLogoutHandler();
                 navigate("/");
-            })
+            });
     }, [user.accessToken, userLogoutHandler, navigate])
 
     return null;

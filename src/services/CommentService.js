@@ -40,16 +40,8 @@ export const editComment = async (commentId, data) => {
 
 export const getAllComments = async () => {
 
-    try {
         const response = await request.get(`${baseUrl}`);
-
+        
         return response;
-
-    } catch (error) {
-
-        console.log(error)
-
-        return [];
-    }
 
 }

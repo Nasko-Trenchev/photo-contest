@@ -11,14 +11,14 @@ export default function MostLikedPhotos({
 
     const [likeCount, setLikeCount] = useState(0);
 
-    useEffect(() => {
+    useEffect(() => {        
         getLikeCount(data._id)
             .then(result => {
-                if (result.code !== 404) {
-                    setLikeCount(result);
-                }
+                // if (result.code !== 404) {
+                typeof result === 'number' && setLikeCount(result);
+                // }
             })
-    })
+    },[])
     
     const navigate = useNavigate();
 

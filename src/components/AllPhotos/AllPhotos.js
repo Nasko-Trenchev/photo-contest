@@ -15,11 +15,10 @@ export default function AllPhotos({
     useEffect(() => {
         getLikeCount(data._id)
             .then(result => {
-                if (result.code !== 404) {
-                    setLikeCount(result);
-                }
+                result.code ? console.log(result.message) : setLikeCount(result);
             })
-    })
+    }, []);
+
     const navigate = useNavigate();
 
     const handleOption = (id) => {
@@ -28,7 +27,7 @@ export default function AllPhotos({
 
     return (
         <div className={styles["box"]}>
-            <img src={data.imageUrl} alt="Photo in category" />
+            <img src={data.imageUrl} alt="Category" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 <p>Current likes {likeCount}</p>

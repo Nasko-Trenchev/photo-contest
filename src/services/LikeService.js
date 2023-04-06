@@ -38,6 +38,10 @@ export const getTopLikedPhotos = async (categoryId) => {
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
     try {
         const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
+        if(response.code){
+            console.log(response.message)
+            return response
+        }
         const objectWithArrays = response.reduce((acc, current) => {
             if (acc[current.photoId]) {
                 acc[current.photoId].push(current)
@@ -48,7 +52,6 @@ export const getTopLikedPhotos = async (categoryId) => {
         }, {})
 
         const asArray = Object.entries(objectWithArrays);
-
         const sortedByLikesArrayLenght = asArray.sort((a, b) => b[1].length - a[1].length)
         const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
         const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])

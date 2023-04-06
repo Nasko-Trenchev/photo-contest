@@ -16,36 +16,26 @@ export default function Gallery() {
   const [allPhotos, setAllPhotos] = useState([]);
   const [category, setCategory] = useState({});
   const [showPhotos, setShowPhotos] = useState(true);
+
   const { categoryId } = useParams();
 
   useEffect(() => {
+
     getTopLikedPhotos(categoryId)
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setTopPhotos(Object.values(result))
-      })
+        result.code ? console.log(result.message) : setTopPhotos(Object.values(result));
+      });
+
     getCategory(categoryId)
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setCategory(result);
-      })
-  }, [categoryId])
+        result.code ? console.log(result.message) : setCategory(result);
+      });
 
-  useEffect(() => {
     getCurrentContestImages(categoryId)
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setAllPhotos(result);
-      })
+        result.code ? console.log(result.message) :setAllPhotos(result);
+      });
+      
   }, [categoryId])
 
   const navigate = useNavigate();
@@ -61,12 +51,12 @@ export default function Gallery() {
         <>
           <h2>The most liked photos:</h2>
           <section>
-            {topPhotos?.map(x => <MostLikedPhotos key={x._id} data={x} />)}
+            {topPhotos.map(x => <MostLikedPhotos key={x._id} data={x} />)}
           </section>
           {allPhotos.length > topPhotos.length &&
             <div>
               <button className={styles['MoreButton']} onClick={() => setShowPhotos(!showPhotos)}>
-                {showPhotos ?  "Hide photos" : "Load all photos"}
+                {showPhotos ? "Hide photos" : "Load all photos"}
               </button>
             </div>
           }

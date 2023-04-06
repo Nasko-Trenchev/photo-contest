@@ -34,7 +34,7 @@ describe('Main Component', () => {
             <Main />
             </BrowserRouter>
         );
-        const image = await screen.findByAltText("category Photo");
+        const image = await screen.findByAltText("Category");
         expect(image).toBeInTheDocument();
     });
 

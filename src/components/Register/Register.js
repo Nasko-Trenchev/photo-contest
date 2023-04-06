@@ -39,7 +39,6 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
-
       return;
     }
 
@@ -51,7 +50,6 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
-
       return;
     }
 
@@ -63,7 +61,6 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
-
       return;
     }
 
@@ -75,7 +72,6 @@ export default function Register() {
         password: '',
         confirmPassword: ''
       })
-
       return;
     }
     register(formInput.email, formInput.password, formInput.username)
@@ -88,7 +84,6 @@ export default function Register() {
             password: '',
             confirmPassword: ''
           })
-          
           return;
         }
         userLoginHandler(authData)

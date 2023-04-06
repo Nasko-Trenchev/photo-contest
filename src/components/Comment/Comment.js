@@ -20,7 +20,7 @@ export default function Comment() {
   useEffect(() => {
     getCommentsWithUsers(photoId)
       .then(result => {
-        setComments(result);
+        result.code ? console.log(result.message) : setComments(result);
       })
   }, [photoId])
 

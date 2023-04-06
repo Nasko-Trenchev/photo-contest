@@ -22,41 +22,29 @@ export default function Details() {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     getImageDetails(photoId)
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setCurrentPhoto(result);
+        result.code ? console.log(result.message) : setCurrentPhoto(result);
       });
+
     getLikeCount(photoId)
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setLikeCount(result);
+        result.code ? console.log(result.message) : setLikeCount(result);
+      });
+
+    getPhotoCreator(photoId)
+      .then(result => {
+        result.code ? console.log(result.message) : setPhotoCreator(result);
       });
   }, [photoId])
 
   useEffect(() => {
     getAllLikes()
       .then(result => {
-        if (result.code) {
-          console.log(result.message)
-          return;
-        }
-        setLikes(result);
+        result.code ? console.log(result.message) : setLikes(result);
       })
   }, [])
-
-  useEffect(() => {
-    getPhotoCreator(photoId)
-      .then(result => {
-        setPhotoCreator(result);
-      })
-  }, [photoId])
 
   useEffect(() => {
     const hasLikes = likes.some(x => x._ownerId === user._id && x.photoId === photoId)
@@ -81,7 +69,7 @@ export default function Details() {
         <h1 className={styles["name"]}>
           {currentPhoto.name} by {photoCreator.user?.username} - {likeCount} {likeCount === 1 ? "like" : "likes"}
         </h1>
-        <img src={currentPhoto.imageUrl} alt="Phosto" className={styles["photo"]} />
+        <img src={currentPhoto.imageUrl} alt="Details" className={styles["photo"]} />
       </div>
       <div className={styles["details-container"]}>
         <h1 className={styles["name"]}>{currentPhoto.contestName}</h1>
