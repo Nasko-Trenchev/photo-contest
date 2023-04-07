@@ -17,7 +17,7 @@ export default function AllPhotos({
             .then(result => {
                 result.code ? console.log(result.message) : setLikeCount(result);
             })
-    }, []);
+    }, [data._id]);
 
     const navigate = useNavigate();
 

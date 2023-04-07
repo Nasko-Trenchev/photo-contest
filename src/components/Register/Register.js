@@ -28,7 +28,7 @@ export default function Register() {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-
+    // eslint-disable-next-line 
     const validEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(formInput.email);
 
     if (!validEmail) {

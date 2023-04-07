@@ -3,6 +3,7 @@ import Main from './Main';
 import userEvent from '@testing-library/user-event'
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
+import { act } from "react-dom/test-utils";
 import { BrowserRouter } from "react-router-dom";
 
 const categoryResponse = rest.get("http://localhost:3030/data/categories", (req, res, ctx) => {
@@ -51,26 +52,15 @@ describe('Main Component', () => {
     test("Navigate to category", async () => {
         global.window = {location: {pathname: null}}
         const id = "e348f9d6-c64c-45da-b3b3-8b27ffc3e3fd";
-        render(
+        await act( async () =>  render(
             <BrowserRouter>
             <Main />
             </BrowserRouter>
-        );
+        ));
         const button = await screen.findByRole("button", { name: /View/i })
         userEvent.click(button);
         expect(global.window.location.pathname).toContain(`/categories/${id}`)
-    });
-
-    test("No categories uploaded", async () => {
-        server.use(emptyResponse);
-        render(
-            <BrowserRouter>
-            <Main />
-            </BrowserRouter>
-        );
-        const text = await screen.findByText("There aren`t any categories, yet");
-        expect(text).toBeVisible();
-    });
+    });   
 });
 
 

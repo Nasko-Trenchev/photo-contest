@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import AllPhotos from './AllPhotos';
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from "react-router-dom";

@@ -7,7 +7,7 @@ import MostLikedPhotos from '../MostLikedPhotos/MostLikedPhotos';
 import AllPhotos from '../AllPhotos/AllPhotos';
 
 import { getCategory } from '../../services/CategoryService';
-import { getCurrentContestImages } from '../../services/PhotoService';
+import { getCategoryPhotos } from '../../services/PhotoService';
 import { getTopLikedPhotos } from '../../services/LikeService';
 
 export default function Gallery() {
@@ -23,7 +23,7 @@ export default function Gallery() {
 
     getTopLikedPhotos(categoryId)
       .then(result => {
-        result.code ? console.log(result.message) : setTopPhotos(Object.values(result));
+        result.code ? console.log(result.message) : setTopPhotos(result);
       });
 
     getCategory(categoryId)
@@ -31,12 +31,12 @@ export default function Gallery() {
         result.code ? console.log(result.message) : setCategory(result);
       });
 
-    getCurrentContestImages(categoryId)
+    getCategoryPhotos(categoryId)
       .then(result => {
-        result.code ? console.log(result.message) :setAllPhotos(result);
+        result.code ? console.log(result.message) : setAllPhotos(result);
       });
-      
   }, [categoryId])
+
 
   const navigate = useNavigate();
 

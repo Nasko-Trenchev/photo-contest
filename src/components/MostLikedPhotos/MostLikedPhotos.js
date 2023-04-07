@@ -18,7 +18,7 @@ export default function MostLikedPhotos({
                 typeof result === 'number' && setLikeCount(result);
                 // }
             })
-    },[])
+    },[data._id])
     
     const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ export default function MostLikedPhotos({
 
     return (
         <div className={styles["box"]}>
-            <img src={data.imageUrl} alt="Top pictures" />
+            <img src={data.imageUrl} alt="Top" />
             <div className={styles["image-overlay"]}>
                 <h3>{data.name}</h3>
                 {likeCount && <p>Current likes {likeCount}</p>}

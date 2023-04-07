@@ -22,7 +22,6 @@ export default function Details() {
   const navigate = useNavigate();
 
   useEffect(() => {
-
     getImageDetails(photoId)
       .then(result => {
         result.code ? console.log(result.message) : setCurrentPhoto(result);
@@ -77,9 +76,10 @@ export default function Details() {
           <div className={styles["like-section"]}>
             {user._id !== currentPhoto._ownerId ?
               <>
-                {vote ? <p className={styles["likePar"]}>{photoCreator.user?.username} appreciates your like! &#10084;</p> :
+                {vote ? <p className={styles["likePar"]}>{photoCreator.user?.username} appreciates your like! &#10084;</p>
+                  :
                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"
-                    alt="Like image"
+                    alt="Like"
                     onClick={() => increaseLike()} />}
               </>
               :

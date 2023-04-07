@@ -6,7 +6,6 @@ import styles from './CreatePhoto.module.css'
 
 import { createPhoto } from '../../services/PhotoService';
 
-
 export default function CreatePhotos() {
 
   const [formInput, setformInput] = useState({

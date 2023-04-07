@@ -5,6 +5,7 @@ const baseUrl = "http://localhost:3030/data/categories";
 export const getAllCategories = async () => {
 
         const response = await request.get(baseUrl);
+        
         return response;
 }
 

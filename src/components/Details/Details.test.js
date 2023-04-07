@@ -52,6 +52,8 @@ describe('Details Component', () => {
                 </AlertContext.Provider>
             </BrowserRouter>
         );
+        // const testImage = document.querySelector("img");
+        // expect(testImage.src).toContain("https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
         const image = await screen.findByAltText("Details");
         expect(image).toBeInTheDocument();
     });

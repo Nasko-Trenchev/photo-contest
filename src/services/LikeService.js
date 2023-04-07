@@ -13,17 +13,14 @@ export const getLikeCount = async (photoId) => {
 
     const where = encodeURIComponent(`photoId="${photoId}"`)
 
-    try {
-        const response = await request.get(`${baseUrl}?where=${where}&count`,)
-        return response;
-    } catch (error) {
-        console.log(error)
-        return 0;
-    }
+    const response = await request.get(`${baseUrl}?where=${where}&count`,)
+
+    return response;
+
 }
 
 export const getAllLikes = async () => {
-    
+
     try {
         const response = await request.get(`${baseUrl}`);
         return response;
@@ -38,11 +35,12 @@ export const getTopLikedPhotos = async (categoryId) => {
     const where = encodeURIComponent(`categoryId="${categoryId}"`)
     try {
         const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
-        if(response.code){
+        if (response.code) {
             console.log(response.message)
             return response
         }
-        const objectWithArrays = response.reduce((acc, current) => {
+        console.log(response);
+        const objectWithPhotosArrays = response.reduce((acc, current) => {
             if (acc[current.photoId]) {
                 acc[current.photoId].push(current)
             } else {
@@ -50,13 +48,16 @@ export const getTopLikedPhotos = async (categoryId) => {
             }
             return acc;
         }, {})
+        console.log(objectWithPhotosArrays);
 
-        const asArray = Object.entries(objectWithArrays);
+        const asArray = Object.entries(objectWithPhotosArrays);
+        console.log(asArray)
         const sortedByLikesArrayLenght = asArray.sort((a, b) => b[1].length - a[1].length)
         const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
+        console.log(extractOnlyPhotosInTheSecondArray);
         const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])
+        console.log(topPhotosByLikes);
         if (topPhotosByLikes.length < 3) {
-
             return topPhotosByLikes;
         }
         return topPhotosByLikes.slice(0, 3);
