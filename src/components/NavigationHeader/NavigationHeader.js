@@ -13,6 +13,7 @@ export default function NavigationHeader() {
       <nav className={styles["navbar__menu"]}>
         <NavLink to="/" className={styles["bn8"]}><i className="fa fa-home"></i> Home</NavLink>
         <ul className={styles["navbar__list"]}>
+          <li><NavLink className={styles["navbar__item"]} to="/about">About</NavLink></li>
           {user.accessToken ?
             <>
               <li><NavLink className={styles["navbar__item"]} to="/profile">Profile</NavLink></li>

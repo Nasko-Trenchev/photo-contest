@@ -18,6 +18,7 @@ import EditComment from "./components/Comment/EditComment/EditComment";
 import RouteGuard from "./components/Common/RouteGuard";
 import Profile from "./components/Profile/Profile";
 import Alert from './components/Alert/Alert'
+import About from "./components/About/About";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Alert />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/about" element={<About />} />
           <Route path="/details" element={<Details />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

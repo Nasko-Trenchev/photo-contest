@@ -15,17 +15,9 @@ export const getCommentsWithUsers = async (photoId) => {
 
     const relations = encodeURIComponent(`user=_ownerId:users`)
 
-    try {
-        const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
+    const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
 
-        return response;
-
-    } catch (error) {
-
-        console.log(error)
-
-        return [];
-    }
+    return response;
 
 }
 
@@ -40,8 +32,8 @@ export const editComment = async (commentId, data) => {
 
 export const getAllComments = async () => {
 
-        const response = await request.get(`${baseUrl}`);
-        
-        return response;
+    const response = await request.get(`${baseUrl}`);
+
+    return response;
 
 }
