@@ -32,8 +32,8 @@ describe('Main Component', () => {
             <Main />
             </BrowserRouter>
         );
-        const image = await screen.findByAltText("Category");
-        expect(image).toBeInTheDocument();
+        const testImage = await screen.findByAltText("Category");
+        expect(testImage.src).toContain("https://images.pexels.com/photos/2922672/pexels-photo-2922672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
     });
 
     test("Select category appears", async () => {

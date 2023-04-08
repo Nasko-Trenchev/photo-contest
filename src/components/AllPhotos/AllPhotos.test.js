@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import AllPhotos from './AllPhotos';
 import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from "react-router-dom";
@@ -22,7 +22,7 @@ afterAll(() => server.close());
 
 describe('AllPhotos Component', () => {
 
-    test("Photos count is correct", async () => {
+    test("Photos is correct", async () => {
         const photo = 
             {
                 categoryId: "49eb9b41-36a2-4997-a6f8-4b62e06f072c",
