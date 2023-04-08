@@ -23,17 +23,25 @@ export default function Gallery() {
 
     getTopLikedPhotos(categoryId)
       .then(result => {
-        result.code ? console.log(result.message) : setTopPhotos(result);
+        setTopPhotos(result);
+      })
+      .catch(err => {
+        console.log(err)
       });
 
     getCategory(categoryId)
       .then(result => {
-        result.code ? console.log(result.message) : setCategory(result);
+        setCategory(result)
+      })
+      .catch(err => {
+        console.log(err)
       });
 
     getCategoryPhotos(categoryId)
       .then(result => {
-        result.code ? console.log(result.message) : setAllPhotos(result);
+        setAllPhotos(result);
+      }).catch(err => {
+        console.log(err)
       });
   }, [categoryId])
 
@@ -63,7 +71,7 @@ export default function Gallery() {
         </>
       }
       <section>
-        {showPhotos && (allPhotos?.map(x => Object.values(topPhotos).some(y => y._id === x._id)
+        {showPhotos && (allPhotos?.map(x => topPhotos.some(y => y._id === x._id)
           ? null : <AllPhotos key={x._id} data={x} />))}
         {allPhotos.length === 0 && <h2>Currently there are no pictures for this category</h2>}
       </section>

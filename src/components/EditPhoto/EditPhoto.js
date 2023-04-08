@@ -35,37 +35,25 @@ export default function EditPhoto() {
 
         if (formInput.name.length < 3) {
             setAlertState({ message: 'Name should be at least 3 characters long!', show: true })
-            setformInput({
-                name: '',
-                imageUrl: '',
-                description: ''
-            })
             return;
         }
 
         const validPhoto = /^https?:\/\/.*\/.*\.(png|gif|webp|jpeg|jpg)\??.*$/gmi.test(formInput.imageUrl)
         if (!validPhoto) {
             setAlertState({ message: 'Invalid photo URL', show: true })
-            setformInput({
-                name: '',
-                imageUrl: '',
-                description: ''
-            })
             return;
         }
 
         if (formInput.description.length < 5) {
             setAlertState({ message: 'Description should be at least 5 characters long!', show: true })
-            setformInput({
-                name: '',
-                imageUrl: '',
-                description: ''
-            })
             return;
         }
         editPhoto(photoId, { categoryId, ...formInput })
             .then(() => {
-            });
+            })
+            .catch(err => {
+                console.log(err)
+            });;
 
         navigate(`/photos/${photoId}`)
     }
@@ -75,13 +63,13 @@ export default function EditPhoto() {
             <form className={styles["login-form"]} onSubmit={onFormSubmit}>
                 <label htmlFor="name">Photo name:</label>
                 <input type="text" id="name" name="name" placeholder={currentPhoto.name}
-                 value={formInput.name} onChange={handleChange} />
+                    value={formInput.name} onChange={handleChange} />
                 <label htmlFor="imageUrl">Image URL:</label>
                 <input type="text" id="imageUrl" name="imageUrl" placeholder={currentPhoto.imageUrl}
-                 value={formInput.imageUrl} onChange={handleChange} />
+                    value={formInput.imageUrl} onChange={handleChange} />
                 <label htmlFor="description">Photo description:</label>
-                <input type="text" id="description" name="description" placeholder={currentPhoto.description} 
-                value={formInput.description} onChange={handleChange} />
+                <input type="text" id="description" name="description" placeholder={currentPhoto.description}
+                    value={formInput.description} onChange={handleChange} />
                 <button type="submit">Edit photo</button>
             </form>
         </>

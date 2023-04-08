@@ -14,9 +14,11 @@ const Alert = () => {
     }, [alertState, setAlertState])
 
     return (
-        alertState.show && <div onClick={() => setAlertState({ show: false, message: '' })} className={styles["alert"]}>
-            <p>{alertState.message}</p>
-        </div>
+        alertState.show && (
+            <div onClick={() => setAlertState({ show: false, message: '' })} className={styles["alert"]}>
+                <p>{alertState.message}</p>
+            </div>
+        )
     )
 }
 

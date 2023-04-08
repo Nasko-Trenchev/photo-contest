@@ -7,7 +7,7 @@ import styles from './Admin.module.css'
 export default function Admin() {
 
   const { user } = useContext(UserContext);
-  
+
   const navigate = useNavigate();
 
   const handleOption = (category) => {

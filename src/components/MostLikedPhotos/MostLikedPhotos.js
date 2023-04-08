@@ -11,15 +11,16 @@ export default function MostLikedPhotos({
 
     const [likeCount, setLikeCount] = useState(0);
 
-    useEffect(() => {        
+    useEffect(() => {
         getLikeCount(data._id)
             .then(result => {
-                // if (result.code !== 404) {
-                typeof result === 'number' && setLikeCount(result);
-                // }
+                setLikeCount(result);
             })
-    },[data._id])
-    
+            .catch(err => {
+                console.log(err)
+            });
+    }, [data._id])
+
     const navigate = useNavigate();
 
     const handleOption = (Id) => {

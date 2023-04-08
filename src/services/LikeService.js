@@ -6,6 +6,10 @@ export const createLike = async (data) => {
 
     const response = await request.post(`${baseUrl}`, data)
 
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
+
     return response;
 }
 
@@ -15,19 +19,23 @@ export const getLikeCount = async (photoId) => {
 
     const response = await request.get(`${baseUrl}?where=${where}&count`,)
 
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
+
     return response;
 
 }
 
 export const getAllLikes = async () => {
 
-    try {
-        const response = await request.get(`${baseUrl}`);
-        return response;
-    } catch (error) {
-        console.log(error)
-        return [];
+    const response = await request.get(`${baseUrl}`);
+
+    if (response.code) {
+        return Promise.reject(response.code)
     }
+
+    return response;
 }
 
 export const getTopLikedPhotos = async (categoryId) => {
@@ -36,8 +44,7 @@ export const getTopLikedPhotos = async (categoryId) => {
     try {
         const response = await request.get(`${baseUrl}?where=${where}&load=${relations}`,)
         if (response.code) {
-            console.log(response.message)
-            return response
+            return Promise.reject(response.code)
         }
         console.log(response);
         const objectWithPhotosArrays = response.reduce((acc, current) => {
@@ -52,14 +59,12 @@ export const getTopLikedPhotos = async (categoryId) => {
 
         const asArrays = Object.entries(objectWithPhotosArrays);
         console.log(asArrays)
-        const sortedByLikesArrayLenght = asArrays.sort((a, b) => b[1].length - a[1].length)
-        const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
-        console.log(extractOnlyPhotosInTheSecondArray);
-        const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])
+        // const sortedByLikesArray = asArrays.sort(([key,valueA], b) => b[1].length - a[1].length)
+        const sortedByLikesArray = asArrays.sort((a, b) => b[1].length - a[1].length)
+        const extractOnlyPhotos = sortedByLikesArray.map(x => x[1].map(y => y.photo))
+        console.log(extractOnlyPhotos);
+        const topPhotosByLikes = extractOnlyPhotos.map(x => x[0])
         console.log(topPhotosByLikes);
-        if (topPhotosByLikes.length < 3) {
-            return topPhotosByLikes;
-        }
         return topPhotosByLikes.slice(0, 3);
     } catch (error) {
         console.log(error)

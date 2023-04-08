@@ -20,15 +20,18 @@ export default function Comment() {
   useEffect(() => {
     getCommentsWithUsers(photoId)
       .then(result => {
-        result.code ? console.log(result.message) : setComments(result);
+        setComments(result);
       })
+      .catch(err => {
+        console.log(err)
+      });
   }, [photoId])
 
   const submitComment = (e) => {
     e.preventDefault();
 
     if (currentComment === '') {
-      setAlertState({ message: 'Comment should have content!', show: true })
+      setAlertState({ message: 'Comments should have content!', show: true })
       setCurrentComment('')
       return;
     }
@@ -37,6 +40,9 @@ export default function Comment() {
         setComments(oldstate => [...oldstate, result]);
         setCurrentComment('');
       })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   const onDeleteComment = (id) => {
@@ -44,6 +50,9 @@ export default function Comment() {
       .then(() => {
         setComments(oldState => oldState.filter(x => x._id !== id));
       })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   return (

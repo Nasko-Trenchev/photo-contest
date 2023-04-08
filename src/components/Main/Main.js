@@ -12,11 +12,14 @@ export default function Main() {
     useEffect(() => {
         getAllCategories()
             .then(result => {
-               result.code ? console.log(result.message) : setCategories(result);
+                setCategories(result);
+            })
+            .catch(err => {
+                console.log(err)
             });
-            
+
     }, [])
-    
+
     const navigate = useNavigate();
 
     const handleOption = (id) => {

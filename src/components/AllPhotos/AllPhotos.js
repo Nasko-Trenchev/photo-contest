@@ -15,8 +15,11 @@ export default function AllPhotos({
     useEffect(() => {
         getLikeCount(data._id)
             .then(result => {
-                result.code ? console.log(result.message) : setLikeCount(result);
+                setLikeCount(result);
             })
+            .catch(err => {
+                console.log(err)
+            });
     }, [data._id]);
 
     const navigate = useNavigate();

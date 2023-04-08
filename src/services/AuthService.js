@@ -6,12 +6,20 @@ export const login = (email, password) => {
 
     const response = request.post(`${baseUrl}/login`, { email, password });
 
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
+
     return response;
 }
 
 export const register = (email, password, username) => {
 
     const response = request.post(`${baseUrl}/register`, { email, password, username });
+
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
 
     return response;
 }
@@ -23,6 +31,9 @@ export const logout = async (accessToken) => {
             "X-Authorization": accessToken
         }
     })
-    
+
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
     return response;
 }

@@ -22,17 +22,26 @@ export default function Profile() {
     useEffect(() => {
         getAllPhotos()
             .then(result => {
-                result.code ? console.log(result.message) : setPhotosUploaded(result.filter(x => x._ownerId === user._id));
+                setPhotosUploaded(result.filter(x => x._ownerId === user._id));
+            })
+            .catch(err => {
+                console.log(err)
             });
 
         getAllLikes()
             .then(result => {
-                result.code ? console.log(result.message) : setTotalLikesGiven(result.filter(x => x._ownerId === user._id));
+                setTotalLikesGiven(result.filter(x => x._ownerId === user._id));
+            })
+            .catch(err => {
+                console.log(err)
             });
 
         getAllComments()
             .then(result => {
-                result.code ? console.log(result.message) : setTotalCommentsGiven(result.filter(x => x._ownerId === user._id))
+                setTotalCommentsGiven(result.filter(x => x._ownerId === user._id))
+            })
+            .catch(err => {
+                console.log(err)
             });
     }, [user]);
 
@@ -53,7 +62,7 @@ export default function Profile() {
                 </section>
                 {photosUploaded.length > 0 ?
                     <>
-                    <h2>Your pictures</h2>
+                        <h2>Your pictures</h2>
                         <section>
                             {photosUploaded?.map(x => <AllPhotos key={x._id} data={x} />)}
                         </section>

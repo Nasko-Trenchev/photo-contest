@@ -13,6 +13,8 @@ export default function About() {
                         <br></br>
                         In order to use the full functionallity of the application you`ll need to register.
                         <br></br>
+                        The preffered format for pictures is square:
+                        <br></br>
                         The application has the following features:
                     </p>
                     <ul>

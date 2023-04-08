@@ -2,6 +2,8 @@ import { useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { AlertContext } from '../../contexts/AlertContext'
 
+import Input from '../Input/Input';
+
 import styles from './CreatePhoto.module.css'
 
 import { createPhoto } from '../../services/PhotoService';
@@ -30,11 +32,6 @@ export default function CreatePhotos() {
 
     if (formInput.name.length < 3) {
       setAlertState({ message: 'Name should be at least 3 characters long!', show: true })
-      setformInput({
-        name: '',
-        imageUrl: '',
-        description: ''
-      })
       return;
     }
 
@@ -42,21 +39,11 @@ export default function CreatePhotos() {
 
     if (!validPhoto) {
       setAlertState({ message: 'Invalid photo URL!', show: true })
-      setformInput({
-        name: '',
-        imageUrl: '',
-        description: ''
-      })
       return;
     }
 
     if (formInput.description.length < 5) {
       setAlertState({ message: 'Description should be at least 5 characters long!', show: true })
-      setformInput({
-        name: '',
-        imageUrl: '',
-        description: ''
-      })
       return;
     }
 
@@ -73,8 +60,9 @@ export default function CreatePhotos() {
         }
         navigate(`/categories/${categoryId}`)
       })
-      .catch((e) => {
-        setAlertState({ message: e.message, show: true })
+      .catch((err) => {
+        setAlertState({ message: err, show: true })
+        console.log(err)
       })
   }
 
@@ -82,12 +70,9 @@ export default function CreatePhotos() {
     <>
       <h1 className={styles["paragraph"]}>Upload your photo</h1>
       <form className={styles["login-form"]} onSubmit={onFormSubmit}>
-        <label htmlFor="name">Photo name:</label>
-        <input type="text" id="name" name="name" value={formInput.name} onChange={onUserInput} />
-        <label htmlFor="imageUrl">Image URL:</label>
-        <input type="text" id="imageUrl" name="imageUrl" value={formInput.imageUrl} onChange={onUserInput} />
-        <label htmlFor="description">Photo description:</label>
-        <input type="text" id="description" name="description" value={formInput.description} onChange={onUserInput} />
+        <Input type="text" id="name" label="Photo name:" onChange={onUserInput} value={formInput.name} />
+        <Input type="text" id="imageUrl" label="Image URL:" onChange={onUserInput} value={formInput.imageUrl} />
+        <Input type="text" id="description" label="Photo description:" onChange={onUserInput} value={formInput.description} />
         <button type="submit">Upload</button>
       </form>
     </>

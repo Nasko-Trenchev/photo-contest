@@ -15,51 +15,71 @@ export default function Details() {
   const [likeCount, setLikeCount] = useState(0);
   const [photoCreator, setPhotoCreator] = useState({});
   const [likes, setLikes] = useState([]);
-  const [vote, setVote] = useState(false);
+  const [hasVoted, sethasVoted] = useState(false);
 
   const { photoId } = useParams();
+
   const { user, isAuthenticated } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
+
     getImageDetails(photoId)
       .then(result => {
-        result.code ? console.log(result.message) : setCurrentPhoto(result);
-      });
+        setCurrentPhoto(result);
+      })
+      .catch(err => {
+        console.log(err)
+      });;
 
     getLikeCount(photoId)
       .then(result => {
-        result.code ? console.log(result.message) : setLikeCount(result);
+        setLikeCount(result);
+      })
+      .catch(err => {
+        console.log(err)
       });
 
     getPhotoCreator(photoId)
       .then(result => {
-        result.code ? console.log(result.message) : setPhotoCreator(result);
+        setPhotoCreator(result);
+      })
+      .catch(err => {
+        console.log(err)
       });
   }, [photoId])
 
   useEffect(() => {
     getAllLikes()
       .then(result => {
-        result.code ? console.log(result.message) : setLikes(result);
+        setLikes(result);
       })
+      .catch(err => {
+        console.log(err)
+      });
   }, [])
 
   useEffect(() => {
     const hasLikes = likes.some(x => x._ownerId === user._id && x.photoId === photoId)
-    setVote(hasLikes)
-  }, [vote, likes, photoId, user._id])
+    sethasVoted(hasLikes)
+  }, [hasVoted, likes, photoId, user._id])
 
   const increaseLike = () => {
     setLikeCount(oldValue => oldValue + 1)
     createLike({ photoId: currentPhoto._id, categoryId: currentPhoto.categoryId })
       .then(() => {
-        setVote(true);
+        sethasVoted(true);
       })
+      .catch(err => {
+        console.log(err)
+      });
     getAllLikes()
       .then(result => {
         setLikes(result)
       })
+      .catch(err => {
+        console.log(err)
+      });
   }
 
   return (
@@ -76,11 +96,11 @@ export default function Details() {
           <div className={styles["like-section"]}>
             {user._id !== currentPhoto._ownerId ?
               <>
-                {vote ? <p className={styles["likePar"]}>{photoCreator.user?.username} appreciates your like! &#10084;</p>
+                {hasVoted ? <p className={styles["likePar"]}>{photoCreator.user?.username} appreciates your like! &#10084;</p>
                   :
                   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Facebook_Like_button.svg/1024px-Facebook_Like_button.svg.png"
                     alt="Like"
-                    onClick={() => increaseLike()} />}
+                    onClick={increaseLike} />}
               </>
               :
               <>
