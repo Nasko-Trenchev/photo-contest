@@ -13,17 +13,16 @@ export const createComment = async (data) => {
     return response;
 }
 
+export const getComment = async (commentId) => {
 
-// export const getComment = async (commentId) => {
+    const response = await request.get(`${baseUrl}/${commentId}`);
 
-//     const response = await request.get(`${baseUrl}/${commentId}`);
+    if (response.code) {
+        return Promise.reject(response.code)
+    }
 
-//     if (response.code) {
-//         return Promise.reject(response.code)
-//     }
-
-//     return response;
-// }
+    return response;
+}
 
 export const getCommentsWithUsers = async (photoId) => {
 
