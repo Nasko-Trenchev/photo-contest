@@ -15,15 +15,13 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <>
-            <UserContext.Provider value={{
-                user,
-                userLoginHandler,
-                userLogoutHandler,
-                isAuthenticated: Boolean(user.accessToken)
-            }}>
-                {children}
-            </UserContext.Provider>
-        </>
+        <UserContext.Provider value={{
+            user,
+            userLoginHandler,
+            userLogoutHandler,
+            isAuthenticated: Boolean(user.accessToken)
+        }}>
+            {children}
+        </UserContext.Provider>
     )
 }

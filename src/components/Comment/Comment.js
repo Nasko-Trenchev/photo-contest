@@ -58,7 +58,7 @@ export default function Comment() {
                 <i onClick={() => navigate(`/comments/${photoId}/${x._id}/edit`)} className='fas'>&#xf591;</i>
                 <i onClick={() => onDeleteComment(x._id)} className='far'>&#xf2ed;</i>
               </> : null}
-          </li>)) 
+          </li>))
           : <p>There are no comments for this picture. Be the first to post!</p>}
       </ul>
       {isAuthenticated ?

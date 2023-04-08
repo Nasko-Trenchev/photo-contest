@@ -15,9 +15,6 @@ const categoryResponse = rest.get("http://localhost:3030/data/categories", (req,
         _id: "e348f9d6-c64c-45da-b3b3-8b27ffc3e3fd"
     }]))
 })
-const emptyResponse = rest.get("http://localhost:3030/data/categories", (req, res, ctx) => {
-    return res(ctx.status(404))
-})
 
 const handlers = [categoryResponse]
 

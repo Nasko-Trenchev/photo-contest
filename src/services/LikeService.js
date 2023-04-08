@@ -50,9 +50,9 @@ export const getTopLikedPhotos = async (categoryId) => {
         }, {})
         console.log(objectWithPhotosArrays);
 
-        const asArray = Object.entries(objectWithPhotosArrays);
-        console.log(asArray)
-        const sortedByLikesArrayLenght = asArray.sort((a, b) => b[1].length - a[1].length)
+        const asArrays = Object.entries(objectWithPhotosArrays);
+        console.log(asArrays)
+        const sortedByLikesArrayLenght = asArrays.sort((a, b) => b[1].length - a[1].length)
         const extractOnlyPhotosInTheSecondArray = sortedByLikesArrayLenght.map(x => Object.values(x[1].map(y => y.photo)))
         console.log(extractOnlyPhotosInTheSecondArray);
         const topPhotosByLikes = extractOnlyPhotosInTheSecondArray.map(x => Object.values(x)[0])
