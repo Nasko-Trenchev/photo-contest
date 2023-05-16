@@ -16,6 +16,7 @@ export default function Admin() {
 
   return (
     <main>
+      {/* TO fix the email */}
       {user.email === "admin@abv.bg" ?
         <>
           <h1>Admin page</h1>

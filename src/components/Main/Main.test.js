@@ -26,7 +26,7 @@ afterAll(() => server.close());
 
 describe('Main Component', () => {
 
-    test("Photos count is correct", async () => {
+    test("Photos is correct", async () => {
         render(
             <BrowserRouter>
             <Main />

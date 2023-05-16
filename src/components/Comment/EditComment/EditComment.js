@@ -24,7 +24,7 @@ export default function EditComment() {
             })
             .catch(err => {
                 console.log(err)
-            });
+            });          
     }, [commentId])
 
     const navigate = useNavigate();
